@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/gingaminga/lip-api-server/issues"
   },
-  "homepage": "https://github.com/gingaminga/lip-api-server#readme"
+  "homepage": "https://github.com/gingaminga/lip-api-server#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
 }
