@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint ./src/**/*.ts",
     "eslint:fix": "eslint --fix ./src/**/*.ts",
-    "prettier:write": "prettier --write ./src/**/*.ts"
+    "prettier:write": "prettier --write ./src/**/*.ts",
+    "dev": "gulp",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -22,13 +24,19 @@
   "homepage": "https://github.com/gingaminga/lip-api-server#readme",
   "devDependencies": {
     "@types/express": "^4.17.15",
+    "@types/gulp": "^4.0.10",
+    "@types/gulp-nodemon": "^0.0.34",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "prettier": "^2.8.2",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
   "dependencies": {
