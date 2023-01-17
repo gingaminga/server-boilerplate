@@ -1,6 +1,11 @@
 import { dest, lastRun, parallel, series, src, watch } from "gulp";
 import nodemon from "gulp-nodemon";
+import alias from "gulp-ts-alias";
 import ts from "gulp-typescript";
+
+interface IGulpTSAliasPaths {
+  [key: string]: string[] | undefined;
+}
 
 const tsProject = ts.createProject("tsconfig.json");
 const tsConfig = tsProject.config;
@@ -14,6 +19,13 @@ const transpile = () =>
     since: lastRun(transpile),
     sourcemaps: true,
   })
+    .pipe(
+      alias({
+        configuration: {
+          paths: tsOption.paths as IGulpTSAliasPaths,
+        },
+      }), // type이 달라 맞춰주기 위한 처리
+    )
     .pipe(tsProject())
     .pipe(
       dest(OUT_PATH, {
