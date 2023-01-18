@@ -1,7 +1,8 @@
 import server from "@/app";
+import logger from "@/utils/logger";
 
 const PORT = server.get("port");
 
 server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  logger.info(`Hello! Start LIP API Server on port ${PORT} :)`);
 });
