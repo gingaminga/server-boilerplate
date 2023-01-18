@@ -1,9 +1,7 @@
-import express from "express";
+import server from "@/app";
 
-import constants from "@utils/constants";
+const PORT = server.get("port");
 
-const app = express();
-
-app.listen(constants.PORT, () => {
-  console.log(`Listening on port ${constants.PORT}`);
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
