@@ -18,5 +18,10 @@
         "devDependencies": true
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
