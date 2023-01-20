@@ -1,4 +1,6 @@
+import "dotenv/config";
 import server from "@/app";
+import constants from "@/utils/constants";
 import logger from "@/utils/logger";
 
 const PORT = server.get("port");
