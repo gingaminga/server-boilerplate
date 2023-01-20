@@ -6,5 +6,5 @@ import logger from "@/utils/logger";
 const PORT = server.get("port");
 
 server.listen(PORT, () => {
-  logger.info(`Hello! Start LIP API Server on port ${PORT} :)`);
+  logger.info(`Hello! Start ${constants.PROJECT_NAME} API Server on port ${PORT} :)`);
 });
