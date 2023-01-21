@@ -7,6 +7,8 @@ import express from "express";
 const app = express();
 app.set("port", constants.PORT);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(requestInfo);
 app.use(responseFormat);
 app.use(notFound);
