@@ -1,5 +1,5 @@
 import requestInfoMiddleware from "@middlewares/requestInfoMiddleware";
-import constants from "@/utils/constants";
+import constants from "@utils/constants";
 import express from "express";
 
 const app = express();

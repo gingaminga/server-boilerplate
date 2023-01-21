@@ -1,4 +1,4 @@
-import constants from "@/utils/constants";
+import constants from "@utils/constants";
 import colors from "ansi-colors";
 import path from "path";
 import winston from "winston";
