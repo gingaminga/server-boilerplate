@@ -49,9 +49,10 @@ const requestParameter = (method: string, query?: object, body?: object, param?:
  * @description 요청에 대한 정보를 로그로  미들웨어
  */
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const { body, hostname, method, originalUrl, params, protocol, query } = req;
+  const { body, method, originalUrl, params, protocol, query } = req;
+  const host = req.get("host");
 
-  const url = `${protocol}://${hostname}${originalUrl}`;
+  const url = `${protocol}://${host}${originalUrl}`;
   const startTime = new Date().getTime();
 
   requestStartTimeLog(url, method);
