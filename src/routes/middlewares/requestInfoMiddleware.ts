@@ -2,15 +2,48 @@ import logger from "@utils/logger";
 import colors from "ansi-colors";
 import onFinished from "on-finished";
 import express from "express";
+import _ from "lodash";
+
+/**
+ * @description 파라미터에 대한 정보 가져오기
+ * @param query query params
+ * @param body body params
+ * @param param param params
+ * @returns 파리미터 로그
+ */
+const getParamsLog = (query?: object, body?: object, param?: object) => {
+  let paramLog = "";
+
+  if (!_.isEmpty(query)) {
+    paramLog += `\n Query params : ${JSON.stringify(query)}`;
+  }
+
+  if (!_.isEmpty(body)) {
+    paramLog += `\n Body params : ${JSON.stringify(body)}`;
+  }
+
+  if (!_.isEmpty(param)) {
+    paramLog += `\n Param params : ${JSON.stringify(param)}`;
+  }
+
+  return paramLog;
+};
 
 /**
  * @description 요청에 대한 시작 시간 로그 남기기
  * @param url 요청 url
  * @param method HTTP 메소드
+ * @param query query params
+ * @param body body params
+ * @param param param params
  */
-const requestStartTimeLog = (url: string, method: string) => {
-  const startLog = colors.magenta(`Started [${method}] ${url}`);
-  logger.info(startLog);
+const requestStartTimeLog = (url: string, method: string, query?: object, body?: object, param?: object) => {
+  let startLog = `Started [${method}] ${url}`;
+
+  const paramsLog = getParamsLog(query, body, param);
+  startLog += paramsLog;
+
+  logger.info(colors.magenta(startLog));
 };
 
 /**
@@ -25,28 +58,7 @@ const requestFinishTimeLog = (url: string, method: string, takenTime: number) =>
 };
 
 /**
- * @description 요청에 대한 정보 로그 남기기
- * @param method HTTP 메소드
- * @param query query params
- * @param body body params
- * @param param param params
- */
-const requestParameter = (method: string, query?: object, body?: object, param?: object) => {
-  if (method === "GET" && query) {
-    logger.info(`Query Parameters : ${JSON.stringify(query)}`);
-  }
-
-  if (body) {
-    logger.info(`Body Parameters : ${JSON.stringify(body)}`);
-  }
-
-  if (param) {
-    logger.info(`Param Parameters : ${JSON.stringify(param)}`);
-  }
-};
-
-/**
- * @description 요청에 대한 정보를 로그로  미들웨어
+ * @description 요청에 대한 정보를 로그로 남기는 미들웨어
  */
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const { body, method, originalUrl, params, protocol, query } = req;
@@ -55,8 +67,7 @@ export default (req: express.Request, res: express.Response, next: express.NextF
   const url = `${protocol}://${host}${originalUrl}`;
   const startTime = new Date().getTime();
 
-  requestStartTimeLog(url, method);
-  requestParameter(method, query, body, params);
+  requestStartTimeLog(url, method, query, body, params);
 
   onFinished(res, (error, _res) => {
     const finishTime = new Date().getTime();
