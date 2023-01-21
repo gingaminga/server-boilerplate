@@ -20,7 +20,7 @@ const requestStartTimeLog = (url: string, method: string) => {
  * @param takenTime 소요 시간
  */
 const requestFinishTimeLog = (url: string, method: string, takenTime: number) => {
-  const endLog = colors.magenta(`Finished [${method}] ${url} ${takenTime}ms`);
+  const endLog = colors.magenta(`Finished [${method}] ${url} (${takenTime}ms)`);
   logger.info(endLog);
 };
 
