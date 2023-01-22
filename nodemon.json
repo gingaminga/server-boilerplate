@@ -1,0 +1,7 @@
+{
+  "delay": 500,
+  "exec": "node --inspect -r tsconfig-paths/register -r ts-node/register src",
+  "ext": "ts",
+  "verbose": true,
+  "watch": ["src/**/*.ts"]
+}
