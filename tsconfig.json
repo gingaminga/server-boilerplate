@@ -33,7 +33,8 @@
       "@/*": ["src/*"],
       "@routers/*": ["src/routes/routers/*"],
       "@middlewares/*": ["src/routes/middlewares/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@test/*": ["src/test/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
