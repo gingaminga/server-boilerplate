@@ -76,7 +76,7 @@ $ vi .env
   - `app.ts` : express 설정의 root 부분
   - `index.ts` : 해당 프로젝트의 root 부분
 
-## 자신의 프로젝트로 사용하기
+## 👍 자신의 프로젝트로 사용하기
 
 git remote 를 변경하거나 삭제하면 돼요. :)
 
