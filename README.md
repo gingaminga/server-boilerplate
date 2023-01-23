@@ -7,13 +7,7 @@
 
 ## ⚒기술 스택
 
-<img src="https://img.shields.io/badge/Typescript-blue?style=flat&logo=typescript&logoColor=white"/>
-<img src="https://img.shields.io/badge/Express-green?style=flat&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/Nodemon-yellow?style=flat&logo=nodemon&logoColor=white"/>
-<img src="https://img.shields.io/badge/Jest-orange?style=flat&logo=jest&logoColor=white"/>
-<img src="https://img.shields.io/badge/Prettier-purple?style=flat&logo=prettier&logoColor=white"/>
-<img src="https://img.shields.io/badge/ESLint-orange?style=flat&logo=eslint&logoColor=white"/>
-<img src="https://img.shields.io/badge/NPM-yellow?style=flat&logo=npm&logoColor=white"/>
+<img src="https://img.shields.io/badge/Typescript-blue?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Express-green?style=flat&logo=express&logoColor=white"/> <img src="https://img.shields.io/badge/Nodemon-yellow?style=flat&logo=nodemon&logoColor=white"/> <img src="https://img.shields.io/badge/Jest-orange?style=flat&logo=jest&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-purple?style=flat&logo=prettier&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-orange?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/NPM-yellow?style=flat&logo=npm&logoColor=white"/>
 
 ## 😯어떻게 쓰나요?
 
