@@ -1,5 +1,3 @@
-// http status code 중 자주 사용하는 것들만 넣었어요.
-
 const enum HTTP_STATUS_CODE {
   BAD_REQUEST = 400,
   FORBIDDEN = 403,
