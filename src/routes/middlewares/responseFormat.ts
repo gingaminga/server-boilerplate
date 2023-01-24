@@ -3,7 +3,7 @@ import HTTP_STATUS_CODE from "@utils/httpStatusCode";
 import express from "express";
 
 const enum RESPONSE_STATUS {
-  FAIULRE = "FAIURE",
+  FAILURE = "FAILURE",
   SUCCESS = "SUCCESS",
 }
 
@@ -15,7 +15,7 @@ const enum RESPONSE_STATUS {
  */
 const getResponseFormat = (status: boolean, data: any) => ({
   data,
-  status: status ? RESPONSE_STATUS.SUCCESS : RESPONSE_STATUS.FAIULRE,
+  status: status ? RESPONSE_STATUS.SUCCESS : RESPONSE_STATUS.FAILURE,
 });
 
 /**
