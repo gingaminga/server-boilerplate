@@ -1,5 +1,5 @@
-import request from "supertest";
 import server from "@/app";
+import request from "supertest";
 
 describe("GET /api/status", () => {
   it("status to be 200 and recieve OK message :)", async () => {
