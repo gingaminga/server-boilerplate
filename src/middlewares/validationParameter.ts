@@ -1,13 +1,13 @@
 import CError, { ERROR_MESSAGE } from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/httpStatusCode";
 import logger from "@utils/logger";
-import express from "express";
+import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 
 /**
  * @description 파라미터 유효성 검사하는 미들웨어
  */
-export default async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export default async (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {

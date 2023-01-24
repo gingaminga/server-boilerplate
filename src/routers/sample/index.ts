@@ -1,14 +1,14 @@
 import validationParameter from "@middlewares/validationParameter";
 import SampleService from "@services/sample";
-import express from "express";
+import { RequestHandler, Router } from "express";
 import { query } from "express-validator";
 import { Container } from "typedi";
 
-const router = express.Router();
+const router = Router();
 
 const validation = [query("num").isNumeric().toInt(), validationParameter];
 
-const sample = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+const sample: RequestHandler = (req, res, next) => {
   const number = Number(req.query.num);
 
   const sampleService = Container.get(SampleService);

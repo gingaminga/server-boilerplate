@@ -1,6 +1,6 @@
 import CError from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/httpStatusCode";
-import express from "express";
+import { NextFunction, Request, Response } from "express";
 
 const enum RESPONSE_STATUS {
   FAILURE = "FAILURE",
@@ -21,7 +21,7 @@ const getResponseFormat = (status: boolean, data: any) => ({
 /**
  * @description 커스텀 응답 함수를 정의하는 미들웨어
  */
-export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   res.result = (data) => {
     const code = HTTP_STATUS_CODE.OK;
 

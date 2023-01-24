@@ -1,6 +1,6 @@
 import logger from "@utils/logger";
 import colors from "ansi-colors";
-import express from "express";
+import { NextFunction, Request, Response } from "express";
 import _ from "lodash";
 import onFinished from "on-finished";
 
@@ -60,7 +60,7 @@ const requestFinishTimeLog = (url: string, method: string, takenTime: number) =>
 /**
  * @description 요청에 대한 정보를 로그로 남기는 미들웨어
  */
-export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
   const { body, method, originalUrl, params, protocol, query } = req;
   const host = req.get("host");
 
