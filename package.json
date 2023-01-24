@@ -52,6 +52,8 @@
     "express-validator": "^6.14.3",
     "lodash": "^4.17.21",
     "on-finished": "^2.4.1",
+    "reflect-metadata": "^0.1.13",
+    "typedi": "^0.10.0",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
   }

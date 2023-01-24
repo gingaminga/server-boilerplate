@@ -1,16 +1,27 @@
 import validationParameter from "@middlewares/validationParameter";
+import SampleService from "@services/sample";
 import express from "express";
 import { query } from "express-validator";
+import { Container } from "typedi";
 
 const router = express.Router();
 
-const validation = [query("username").isEmail(), validationParameter];
+const validation = [query("num").isNumeric().toInt(), validationParameter];
+
+const sample = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const number = Number(req.query.num);
+
+  const sampleService = Container.get(SampleService);
+
+  sampleService.setNumber(number);
+
+  const newNumber = sampleService.getNumber();
+  res.send(`변경된 숫자는 ${newNumber}입니다.`);
+};
 
 /**
  * @description 파라미터에 대한 validation을 처리하는 샘플 router입니다. 브라우저에서 테스트해보세요. (http://127.0.0.1:3001/api/sample)
  */
-router.get("/", ...validation, (req, res, next) => {
-  res.send("OK");
-});
+router.get("/", ...validation, sample);
 
 export default router;
