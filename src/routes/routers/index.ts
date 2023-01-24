@@ -5,7 +5,8 @@ import express from "express";
 
 const router = express.Router();
 
-router.use("/sample", sample); // 라우터 미들웨어
+// 라우터 미들웨어
+router.use("/sample", sample);
 
 router.get("/status", (req, res, next) => {
   res.send("OK");
