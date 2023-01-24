@@ -69,7 +69,8 @@ $ vi .env
 - `dist` : `src`폴더를 기준으로 트랜스파일링하여 javascript로 빌드된 폴더(`tsconfig.json`에서 변경 가능)
 - `logs` : `.env` 파일로 설정하지 않았다면 생기는 폴더로, winston을 사용한 log를 쌓음
 - `src` : 실제 서비스에 대한 코드가 들어있는 폴더
-  - `routes` : 실제 API와 관련된 로직이 들어있는 폴더
+  - `routers` : 실제 API와 관련된 로직이 들어있는 폴더
+  - `middlewares` : 공통 미들웨어 로직이 들어있는 폴더
   - `test` : 테스트 로직 폴더
   - `types` : 커스텀 타입을 설정하는 폴더
   - `utils` : 각종 유틸들
