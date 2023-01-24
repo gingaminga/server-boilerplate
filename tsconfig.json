@@ -31,8 +31,8 @@
     "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "@/*": ["src/*"],
-      "@routers/*": ["src/routes/routers/*"],
-      "@middlewares/*": ["src/routes/middlewares/*"],
+      "@routers/*": ["src/routers/*"],
+      "@middlewares/*": ["src/middlewares/*"],
       "@utils/*": ["src/utils/*"],
       "@test/*": ["src/test/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,

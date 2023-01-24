@@ -8,8 +8,10 @@ const router = express.Router();
 // 라우터 미들웨어
 router.use("/sample", sample);
 
-router.get("/status", (req, res, next) => {
+const checkStatus = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.send("OK");
-});
+};
+
+router.get("/status", checkStatus);
 
 export default router;
