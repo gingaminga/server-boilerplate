@@ -1,4 +1,4 @@
-# Express server bolierplate
+# Express server boilerplate
 
 ## ❓왜 만들게 되었나?
 
