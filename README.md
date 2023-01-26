@@ -91,5 +91,20 @@ $ git remote -v
 $ git remote rm origin
 
 # 자신의 레포지토리를 원격지로 설정
-$ git remote add origin [자신의 원격지 주소]
+$ git remote add origin [자신의 레포지토리 주소]
+```
+
+(해당 보일러플레이트를 사용하고 있는 상태에서) 업데이트된 소스를 반영받고 싶다면 `merge or rebase`를 통해 반영하면 돼요. :)
+
+```bash
+# 원격지 추가
+$ git remote add boilerplate https://github.com/gingaminga/express-server-bolierplate.git
+
+# boilerplate repository 반영사항 가져오기
+$ git fetch boilerplate main
+
+# 반영사항을 현재 (자신의) 로컬 브랜치에 합치기
+$ git rebase boilerplate/main
+# or
+$ git merge boilerplate/main
 ```
