@@ -12,7 +12,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
   if (!errors.isEmpty()) {
     const error = new CError(ERROR_MESSAGE.INVALID_VALUE, HTTP_STATUS_CODE.INVALID_VALUE);
-    logger.error(error.stack);
     res.error(error);
 
     return;

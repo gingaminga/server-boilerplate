@@ -21,6 +21,9 @@ export default class CError extends Error {
 
     if (typeof error === "string") {
       this.message = error;
+    } else if (error instanceof CError) {
+      this.message = error.message;
+      this.code = error.code;
     } else if (error instanceof Error) {
       this.message = error.message;
     }

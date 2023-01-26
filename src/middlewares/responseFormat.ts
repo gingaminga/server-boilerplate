@@ -1,4 +1,5 @@
 import CError from "@utils/error";
+import logger from "@utils/logger";
 import HTTP_STATUS_CODE from "@utils/httpStatusCode";
 import { NextFunction, Request, Response } from "express";
 
@@ -29,6 +30,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
   };
 
   res.error = (error) => {
+    logger.error(error.stack);
     const { code, message } = new CError(error);
 
     res.status(code).json(getResponseFormat(false, message));
