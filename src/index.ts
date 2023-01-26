@@ -1,5 +1,4 @@
 import "dotenv/config";
-import "reflect-metadata";
 import server from "@/app";
 import constants from "@utils/constants";
 import logger from "@utils/logger";

@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import notFound from "@middlewares/notFound";
 import requestInfo from "@middlewares/requestInfo";
 import responseFormat from "@middlewares/responseFormat";
