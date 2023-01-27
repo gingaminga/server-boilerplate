@@ -7,6 +7,7 @@ export const enum ERROR_MESSAGE {
   INVALID_VALUE = "INVALID_VALUE",
   NOT_FOUND = "NOT_FOUND",
   UNAUTHORIZED = "UNAUTHORIZED",
+  UNKNOWN_ERROR = "UNKNOWN_ERROR",
 }
 
 export default class CError extends Error {
@@ -16,7 +17,7 @@ export default class CError extends Error {
    * @param error 에러 메시지 or error 객체
    * @param code http 상태 코드
    */
-  constructor(error: string | Error | CError, code?: number) {
+  constructor(error: unknown, code?: number) {
     super();
 
     if (typeof error === "string") {
@@ -26,6 +27,8 @@ export default class CError extends Error {
       this.code = error.code;
     } else if (error instanceof Error) {
       this.message = error.message;
+    } else {
+      this.message = ERROR_MESSAGE.UNKNOWN_ERROR;
     }
 
     if (code) {
