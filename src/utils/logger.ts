@@ -20,7 +20,7 @@ const enum Level {
 const logFormat = printf((info) => {
   let { message, level } = info;
 
-  switch (info.level) {
+  switch (level) {
     case Level.ERROR: {
       level = colors.red(level);
       message = colors.red(message);
