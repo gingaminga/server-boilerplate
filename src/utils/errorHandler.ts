@@ -1,6 +1,6 @@
+import constants from "@utils/constants";
 import CError from "@utils/error";
 import logger from "@utils/logger";
-import constants from "./constants";
 
 export default (error: unknown): CError => {
   const customError = new CError(error);
