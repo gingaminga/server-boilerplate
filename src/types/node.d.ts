@@ -7,6 +7,9 @@ declare namespace NodeJS {
     NODE_ENV: "development" | "production" | "test";
     PORT: number;
     PROJECT_NAME: string;
+    REDIS_HOST: string;
+    REDIS_PASS: string;
+    REDIS_PORT: number;
     SSL_CA_FILE_PATH: string;
     SSL_CERT_FILE_PATH: string;
     SSL_KEY_FILE_PATH: string;
