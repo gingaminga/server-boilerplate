@@ -1,5 +1,13 @@
 export default {
   HTTPS: process.env.HTTPS === "true",
+  DATABASE: {
+    HOST: process.env.DATABASE_HOST || "127.0.0.1",
+    PASSWORD: process.env.DATABASE_PASSWORD || "",
+    PORT: Number(process.env.DATABASE_PORT || 3306),
+    SCHEMA: process.env.DATABASE_SCHEMA || "test",
+    TYPE: process.env.DATABASE_TYPE || "mysql",
+    USER_NAME: process.env.DATABASE_USER_NAME || "root",
+  },
   LOG_MAX_FILES: Number(process.env.LOG_MAX_FILES || 3),
   LOG_MAX_SIZE: Number(process.env.LOG_MAX_SIZE || "10m"),
   LOG_PATH: process.env.LOG_PATH,
