@@ -1,17 +1,15 @@
+import { IRepository } from "@customTypes/repository";
 import Sample from "@databases/entities/sample";
-import RelationDatabaseService from "@services/rdb";
-import Container from "typedi";
+import BaseRepository from "@databases/repositories/base";
+import { Service } from "typedi";
 
-const rdbService = Container.get(RelationDatabaseService);
+@Service()
+export default class SampleRepository extends BaseRepository implements IRepository<Sample> {
+  getInstance() {
+    return this.getRepository(Sample);
+  }
 
-const SampleRepository = rdbService.getRepository(Sample).extend({
-  findValue1(value: string) {
-    return this.createQueryBuilder("sample")
-      .where("sample.value1 = :value1", {
-        value1: value,
-      })
-      .getMany();
-  },
-});
-
-export default SampleRepository;
+  getQueryBuilder(alias?: string) {
+    return this.getInstance().createQueryBuilder(alias);
+  }
+}

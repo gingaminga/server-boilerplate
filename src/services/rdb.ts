@@ -3,7 +3,7 @@ import errorHandler from "@utils/errorHandler";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { Service } from "typedi";
-import { DataSource, DataSourceOptions, EntityTarget, ObjectLiteral } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 
 @Service()
 export default class RelationDatabaseService {
@@ -28,11 +28,10 @@ export default class RelationDatabaseService {
   }
 
   /**
-   * @description 레포지토리 가져오기
-   * @param target 엔티티(model) 객체
+   * @description datasource instance 가져오기
    */
-  getRepository(target: EntityTarget<ObjectLiteral>) {
-    return this.instance.getRepository(target);
+  getInstance() {
+    return this.instance;
   }
 
   /**

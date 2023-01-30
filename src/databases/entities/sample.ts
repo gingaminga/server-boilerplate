@@ -7,15 +7,9 @@ export default class Sample {
 
   @Column({
     nullable: true,
-    type: "varchar",
+    type: "int",
   })
-  value: string | null = null;
-
-  @Column({
-    nullable: true,
-    type: "varchar",
-  })
-  value2: number | null = null;
+  num: number | null = null;
 
   @CreateDateColumn()
   created_at!: Date;
