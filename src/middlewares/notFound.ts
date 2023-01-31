@@ -8,5 +8,5 @@ import { NextFunction, Request, Response } from "express";
 export default (req: Request, res: Response, next: NextFunction) => {
   const error = new CError(ERROR_MESSAGE.NOT_FOUND, HTTP_STATUS_CODE.NOT_FOUND);
 
-  res.send(error);
+  res.error(error);
 };
