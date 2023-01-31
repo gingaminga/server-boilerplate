@@ -8,7 +8,7 @@ const router = Router();
 
 const validation = [query("num").isNumeric().toInt(), validationParameter];
 
-const sample: RequestHandler = (req, res, next) => {
+const sample: RequestHandler = (req, res) => {
   const number = Number(req.query.num);
 
   const sampleService = Container.get(SampleService);

@@ -1,6 +1,5 @@
 import CError, { ERROR_MESSAGE } from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/httpStatusCode";
-import logger from "@utils/logger";
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 

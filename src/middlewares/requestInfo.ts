@@ -69,7 +69,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
 
   requestStartTimeLog(url, method, query, body, params);
 
-  onFinished(res, (error, _res) => {
+  onFinished(res, () => {
     const finishTime = new Date().getTime();
     const takenTime = finishTime - startTime; // 소요시간
 

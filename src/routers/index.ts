@@ -6,7 +6,7 @@ const router = Router();
 // 라우터 미들웨어
 router.use("/sample", sample);
 
-const checkStatus: RequestHandler = (req, res, next) => {
+const checkStatus: RequestHandler = (req, res) => {
   res.send("OK");
 };
 
