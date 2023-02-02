@@ -1,5 +1,5 @@
 import { statusService } from "@loaders/service.loader";
-import RedisService from "@services/redis";
+import RedisClient from "@redis/index";
 import constants from "@utils/constants";
 import { Container } from "typedi";
 
@@ -7,14 +7,14 @@ import { Container } from "typedi";
  * @description 레디스 실행
  */
 const startRedis = async () => {
-  const redisService = Container.get(RedisService);
+  const redisClient = Container.get(RedisClient);
 
   const options = {
     host: constants.REDIS.HOST,
     port: constants.REDIS.PORT,
     password: constants.REDIS.PASSWORD,
   };
-  await redisService.initialized(options);
+  await redisClient.initialized(options);
 };
 
 /**

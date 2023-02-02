@@ -12,7 +12,7 @@ interface IConnectionOption {
 }
 
 @Service()
-export default class RedisService {
+export default class RedisClient {
   private instance!: ReturnType<typeof createClient>;
 
   /**

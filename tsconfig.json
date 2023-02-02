@@ -36,6 +36,7 @@
       "@databases/*": ["src/databases/*"],
       "@loaders/*": ["src/loaders/*"],
       "@middlewares/*": ["src/middlewares/*"],
+      "@redis/*": ["src/databases/redis"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@test/*": ["src/test/*"],
