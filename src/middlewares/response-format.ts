@@ -1,6 +1,6 @@
 import CError from "@utils/error";
+import HTTP_STATUS_CODE from "@utils/http-status-code";
 import logger from "@utils/logger";
-import HTTP_STATUS_CODE from "@utils/httpStatusCode";
 import { NextFunction, Request, Response } from "express";
 
 const enum RESPONSE_STATUS {

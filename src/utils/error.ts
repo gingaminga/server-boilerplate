@@ -1,4 +1,4 @@
-import HTTP_STATUS_CODE from "@utils/httpStatusCode";
+import HTTP_STATUS_CODE from "@utils/http-status-code";
 
 export const enum ERROR_MESSAGE {
   BAD_REQUEST = "BAD_REQUEST",

@@ -1,5 +1,5 @@
 import CError, { ERROR_MESSAGE } from "@utils/error";
-import HTTP_STATUS_CODE from "@utils/httpStatusCode";
+import HTTP_STATUS_CODE from "@utils/http-status-code";
 import { Request, Response } from "express";
 
 /**
