@@ -8,5 +8,6 @@
   },
   "preset": "ts-jest",
   "testEnvironment": "node",
-  "testPathIgnorePatterns": ["dist/"]
+  "testPathIgnorePatterns": ["dist/"],
+  "setupFilesAfterEnv": ["<rootDir>/src/test/test-loader.ts"]
 }
