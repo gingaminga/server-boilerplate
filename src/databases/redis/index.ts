@@ -1,5 +1,5 @@
+import errorHandler from "@utils/custom-error";
 import CError from "@utils/error";
-import errorHandler from "@utils/errorHandler";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
