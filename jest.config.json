@@ -6,7 +6,8 @@
     "^@middlewares/(.*)$": ["<rootDir>/src/middlewares/$1"],
     "^@routes/(.*)$": ["<rootDir>/src/routers/$1"],
     "^@services/(.*)$": ["<rootDir>/src/services/$1"],
-    "^@utils/(.*)$": ["<rootDir>/src/utils/$1"]
+    "^@utils/(.*)$": ["<rootDir>/src/utils/$1"],
+    "^@validators/(.*)$": ["<rootDir>/src/validators/$1"]
   },
   "preset": "ts-jest",
   "testEnvironment": "node",
