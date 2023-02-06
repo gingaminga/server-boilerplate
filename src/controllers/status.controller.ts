@@ -1,8 +1,6 @@
-import StatusService from "@services/status";
-import { RequestHandler, Router } from "express";
+import StatusService from "@services/status.service";
+import { RequestHandler } from "express";
 import Container from "typedi";
-
-const router = Router();
 
 export const checkStatusController: RequestHandler = (req, res) => {
   const statusService = Container.get(StatusService);
@@ -16,7 +14,3 @@ export const checkStatusController: RequestHandler = (req, res) => {
 
   res.result("Not OK :(");
 };
-
-router.get("/status", checkStatusController);
-
-export default router;

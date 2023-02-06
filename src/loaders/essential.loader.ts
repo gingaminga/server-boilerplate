@@ -1,13 +1,11 @@
 import "reflect-metadata";
-import StatusService from "@services/status";
+import StatusService from "@services/status.service";
 import { Container } from "typedi";
 
 /**
  * @description 필수 초기 로더
  */
-const essentialInitLoader = () => {
+export const essentialInitLoader = () => {
   const statusService = Container.get(StatusService);
   statusService.setServerStatus(true);
 };
-
-export default essentialInitLoader;

@@ -1,7 +1,7 @@
 import notFound from "@middlewares/not-found";
 import requestInfo from "@middlewares/request-info";
 import responseFormat from "@middlewares/response-format";
-import routers from "@routers/index";
+import routers from "@routes/status.route";
 import constants from "@utils/constants";
 import express from "express";
 

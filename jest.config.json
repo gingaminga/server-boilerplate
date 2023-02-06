@@ -1,13 +1,15 @@
 {
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^@utils/(.*)$": ["<rootDir>/src/utils/$1"],
+    "^@controllers/(.*)$": "<rootDir>/src/controllers/$1",
+    "^@loaders/(.*)$": "<rootDir>/src/loaders/$1",
     "^@middlewares/(.*)$": ["<rootDir>/src/middlewares/$1"],
-    "^@routers/(.*)$": ["<rootDir>/src/routers/$1"],
-    "^@services/(.*)$": ["<rootDir>/src/services/$1"]
+    "^@routes/(.*)$": ["<rootDir>/src/routers/$1"],
+    "^@services/(.*)$": ["<rootDir>/src/services/$1"],
+    "^@utils/(.*)$": ["<rootDir>/src/utils/$1"]
   },
   "preset": "ts-jest",
   "testEnvironment": "node",
   "testPathIgnorePatterns": ["dist/"],
-  "setupFilesAfterEnv": ["<rootDir>/src/test/test-loader.ts"]
+  "setupFilesAfterEnv": ["<rootDir>/src/loaders/test.loader.ts"]
 }

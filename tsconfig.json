@@ -31,11 +31,13 @@
     "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "@/*": ["src/*"],
-      "@routers/*": ["src/routers/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@loaders/*": ["src/loaders/*"],
       "@middlewares/*": ["src/middlewares/*"],
-      "@utils/*": ["src/utils/*"],
+      "@routes/*": ["src/routes/*"],
+      "@services/*": ["src/services/*"],
       "@test/*": ["src/test/*"],
-      "@services/*": ["src/services/*"]
+      "@utils/*": ["src/utils/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [

@@ -1,4 +1,4 @@
-import StatusService from "@services/status";
+import StatusService from "@services/status.service";
 import { Container } from "typedi";
 
 describe("서버의 상태를 저장하는 서비스 :)", () => {

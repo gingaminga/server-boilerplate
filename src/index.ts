@@ -1,6 +1,6 @@
 import "dotenv/config";
 import server from "@/app";
-import essentialInitLoader from "@/loader";
+import { essentialInitLoader } from "@loaders/essential.loader";
 import constants from "@utils/constants";
 import logger from "@utils/logger";
 
