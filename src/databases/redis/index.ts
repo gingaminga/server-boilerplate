@@ -1,5 +1,4 @@
 import errorHandler from "@utils/custom-error";
-import CError from "@utils/error";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
@@ -79,10 +78,6 @@ export default class RedisClient {
   async get(key: string) {
     const value = await this.instance.get(key);
 
-    if (!value) {
-      throw new CError("Not exist value");
-    }
-
     return value;
   }
 
@@ -107,10 +102,6 @@ export default class RedisClient {
    */
   async hget(key: string, filed: string) {
     const value = await this.instance.hGet(key, filed);
-
-    if (!value) {
-      throw new CError("Not exist value");
-    }
 
     return value;
   }
