@@ -4,7 +4,7 @@ import requestInfoMiddleware from "@middlewares/request-info.middleware";
 import responseFormatMiddleware from "@middlewares/response-format.middleware";
 import routers from "@routes/status.route";
 import constants from "@utils/constants";
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 
 const app = express();
 app.set("port", constants.PORT);
@@ -16,8 +16,6 @@ app.use(responseFormatMiddleware);
 
 app.use("/api", routers);
 app.use(notFoundMiddleware);
-app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
-  celebrateErrorHandlerMiddleware(error, res);
-});
+app.use(celebrateErrorHandlerMiddleware);
 
 export default app;
