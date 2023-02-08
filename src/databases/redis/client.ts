@@ -168,6 +168,6 @@ export default class RedisClient {
     const count = await this.instance.set(key, value);
     logger.debug(`Redis added ${count} ${key} value`);
 
-    return value;
+    return count;
   }
 }
