@@ -30,6 +30,22 @@ export default class RedisClient {
   }
 
   /**
+   * @description 연결끊기
+   * @returns 성공(true)/실패(false) 여부
+   */
+  async close() {
+    try {
+      await this.instance.disconnect();
+
+      return true;
+    } catch (error) {
+      errorHandler(error);
+
+      return false;
+    }
+  }
+
+  /**
    * @description 연결하기
    * @param options connection option
    */
