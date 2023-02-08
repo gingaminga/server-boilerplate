@@ -2,6 +2,7 @@
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@controllers/(.*)$": "<rootDir>/src/controllers/$1",
+    "^@databases/(.*)$": "<rootDir>/src/databases/$1",
     "^@loaders/(.*)$": "<rootDir>/src/loaders/$1",
     "^@middlewares/(.*)$": ["<rootDir>/src/middlewares/$1"],
     "^@routes/(.*)$": ["<rootDir>/src/routers/$1"],
