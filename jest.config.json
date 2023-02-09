@@ -5,7 +5,7 @@
     "^@databases/(.*)$": "<rootDir>/src/databases/$1",
     "^@loaders/(.*)$": "<rootDir>/src/loaders/$1",
     "^@middlewares/(.*)$": ["<rootDir>/src/middlewares/$1"],
-    "^@routes/(.*)$": ["<rootDir>/src/routers/$1"],
+    "^@routes/(.*)$": ["<rootDir>/src/routes/$1"],
     "^@services/(.*)$": ["<rootDir>/src/services/$1"],
     "^@utils/(.*)$": ["<rootDir>/src/utils/$1"],
     "^@validators/(.*)$": ["<rootDir>/src/validators/$1"]
