@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit",
+    "build": "tsc -p . && tsc-alias",
+    "dev": "nodemon --config nodemon.json",
     "eslint": "eslint ./src/**/*.ts",
     "eslint:fix": "eslint --fix ./src/**/*.ts",
     "prettier:write": "prettier --write ./src/**/*.ts",
-    "dev": "nodemon --config nodemon.json",
-    "build": "tsc -p . && tsc-alias"
+    "test": "jest --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
