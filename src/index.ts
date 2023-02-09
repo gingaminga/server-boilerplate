@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "@utils/env";
 import server from "@/app";
 import { essentialInitLoader } from "@loaders/essential.loader";
 import constants from "@utils/constants";

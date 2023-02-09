@@ -1,2 +1,2 @@
-import "dotenv/config";
+import "@utils/env";
 import "reflect-metadata";

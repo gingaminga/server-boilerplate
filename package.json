@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p . && tsc-alias",
-    "dev": "nodemon --config nodemon.json",
+    "build": "cross-env NODE_ENV=production tsc -p . && tsc-alias",
+    "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json",
     "eslint": "eslint ./src/**/*.ts",
     "eslint:fix": "eslint --fix ./src/**/*.ts",
     "prettier:write": "prettier --write ./src/**/*.ts",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
   "dependencies": {
     "ansi-colors": "^4.1.3",
     "celebrate": "^15.0.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
