@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import StatusService from "@services/status.service";
 import { Container } from "typedi";
 

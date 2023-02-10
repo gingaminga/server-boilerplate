@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import "@utils/env";
 import server from "@/app";
 import { essentialInitLoader } from "@loaders/essential.loader";
