@@ -1,4 +1,5 @@
 import errorHandler from "@utils/custom-error";
+import CError from "@utils/error";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
@@ -12,6 +13,8 @@ interface IConnectionOption {
 
 @Service()
 export default class RedisClient {
+  private connectStatus = false;
+
   private instance!: ReturnType<typeof createClient>;
 
   /**
@@ -36,6 +39,8 @@ export default class RedisClient {
   async close() {
     try {
       await this.instance.disconnect();
+
+      this.connectStatus = false;
 
       return true;
     } catch (error) {
@@ -81,6 +86,8 @@ export default class RedisClient {
    * @returns 삭제한 개수
    */
   async del(key: string) {
+    this.isConnect();
+
     const count = await this.instance.del(key);
     logger.debug(`Redis deleted ${count} ${key} value`);
 
@@ -92,6 +99,8 @@ export default class RedisClient {
    * @param key 키
    */
   async get(key: string) {
+    this.isConnect();
+
     const value = await this.instance.get(key);
 
     return value;
@@ -104,6 +113,8 @@ export default class RedisClient {
    * @returns 삭제한 개수
    */
   async hdel(key: string, filed: string) {
+    this.isConnect();
+
     const count = await this.instance.hDel(key, filed);
     logger.debug(`Redis deleted ${count} ${key}-${filed} hash value`);
 
@@ -117,6 +128,8 @@ export default class RedisClient {
    * @returns 해시값
    */
   async hget(key: string, filed: string) {
+    this.isConnect();
+
     const value = await this.instance.hGet(key, filed);
 
     return value;
@@ -130,6 +143,8 @@ export default class RedisClient {
    * @returns 추가된 개수
    */
   async hset(key: string, filed: string, value: unknown) {
+    this.isConnect();
+
     const customValue = JSON.stringify(value);
 
     const count = await this.instance.hSet(key, filed, customValue);
@@ -145,8 +160,19 @@ export default class RedisClient {
   async initialized(options: IConnectionOption) {
     const isConnect = await this.connect(options);
 
+    this.connectStatus = isConnect;
+
     if (isConnect) {
       await this.checkStatus();
+    }
+  }
+
+  /**
+   * @description 연결 상태 확인
+   */
+  private isConnect() {
+    if (!this.connectStatus) {
+      throw new CError("Not connect redis.. :(");
     }
   }
 
@@ -183,6 +209,8 @@ export default class RedisClient {
    * @param value 값
    */
   async set(key: string, value: unknown) {
+    this.isConnect();
+
     const customValue = JSON.stringify(value);
 
     const count = await this.instance.set(key, customValue);
