@@ -129,8 +129,10 @@ export default class RedisClient {
    * @param value 값
    * @returns 추가된 개수
    */
-  async hset(key: string, filed: string, value: string) {
-    const count = await this.instance.hSet(key, filed, value);
+  async hset(key: string, filed: string, value: unknown) {
+    const customValue = JSON.stringify(value);
+
+    const count = await this.instance.hSet(key, filed, customValue);
     logger.debug(`Redis added ${count} ${key}-${filed} hash value`);
 
     return count;
@@ -180,8 +182,10 @@ export default class RedisClient {
    * @param key 키
    * @param value 값
    */
-  async set(key: string, value: string) {
-    const count = await this.instance.set(key, value);
+  async set(key: string, value: unknown) {
+    const customValue = JSON.stringify(value);
+
+    const count = await this.instance.set(key, customValue);
     logger.debug(`Redis added ${count} ${key} value`);
 
     return count;
