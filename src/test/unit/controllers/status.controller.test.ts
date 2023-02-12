@@ -1,7 +1,6 @@
 import { checkStatusController } from "@controllers/status.controller";
-import StatusService from "@services/status.service";
+import { statusService } from "@loaders/container.loader";
 import { Request, Response } from "express";
-import Container from "typedi";
 
 describe("Status controller test :)", () => {
   const req = {
@@ -12,8 +11,6 @@ describe("Status controller test :)", () => {
     send: jest.fn(),
   } as unknown as Response;
   const next = jest.fn();
-
-  const statusService = Container.get(StatusService);
 
   beforeEach(() => {
     (req.query.html as unknown) = false;

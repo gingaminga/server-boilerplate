@@ -1,9 +1,6 @@
-import StatusService from "@services/status.service";
-import { Container } from "typedi";
+import { statusService } from "@loaders/container.loader";
 
 describe("Status service test :)", () => {
-  const statusService = Container.get(StatusService);
-
   test("Get server init status", () => {
     const serverStatus = statusService.getServerStatus();
     expect(serverStatus).toEqual(false);

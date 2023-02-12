@@ -1,10 +1,9 @@
 import app from "@/app";
-import StatusService from "@services/status.service";
+import { statusService } from "@loaders/container.loader";
 import { ERROR_MESSAGE } from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/http-status-code";
 import { RESPONSE_MESSAGE, RESPONSE_STATUS } from "@utils/response";
 import request from "supertest";
-import { Container } from "typedi";
 
 const path = "/api/status";
 
@@ -50,7 +49,6 @@ describe(`Get ${path} test :)`, () => {
 
   describe("If server status is good :)", () => {
     beforeAll(() => {
-      const statusService = Container.get(StatusService);
       statusService.setServerStatus(true);
     });
 
