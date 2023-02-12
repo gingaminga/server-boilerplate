@@ -19,21 +19,21 @@ describe("Check status controller test :)", () => {
 
   describe("Server status is bad", () => {
     beforeEach(() => {
-      jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
     });
 
-    test("Should response with bad message in html", () => {
+    test("Should response with bad message in html", async () => {
       (req.query.html as unknown) = true;
-      checkStatusController(req, res, next);
+      await checkStatusController(req, res, next);
 
       expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
       expect(res.result).not.toHaveBeenCalled();
     });
 
-    test("Should response with bad message in json", () => {
+    test("Should response with bad message in json", async () => {
       (req.query.html as unknown) = false;
-      checkStatusController(req, res, next);
+      await checkStatusController(req, res, next);
 
       expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
@@ -43,21 +43,21 @@ describe("Check status controller test :)", () => {
 
   describe("Server status is good", () => {
     beforeEach(() => {
-      jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
     });
 
-    test("Should response with good message in html", () => {
+    test("Should response with good message in html", async () => {
       (req.query.html as unknown) = true;
-      checkStatusController(req, res, next);
+      await checkStatusController(req, res, next);
 
       expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
       expect(res.result).not.toHaveBeenCalled();
     });
 
-    test("Should response with good message in json", () => {
+    test("Should response with good message in json", async () => {
       (req.query.html as unknown) = false;
-      checkStatusController(req, res, next);
+      await checkStatusController(req, res, next);
 
       expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
