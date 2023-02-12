@@ -14,13 +14,13 @@ describe("Database redis test :)", () => {
     const testValue = "test";
 
     test("Set test", async () => {
-      const count = await redisClient.set(testKey, testValue);
+      const isSuccess = await redisClient.set(testKey, testValue);
 
-      expect(count).toEqual(1);
+      expect(isSuccess).toEqual(true);
     });
 
     test("Get test", async () => {
-      const value = await redisClient.get(testKey);
+      const value = await redisClient.get<boolean>(testKey);
 
       expect(value).toEqual(testValue);
     });
@@ -44,7 +44,7 @@ describe("Database redis test :)", () => {
     });
 
     test("Hash get test", async () => {
-      const value = await redisClient.hget(testKey, testField);
+      const value = await redisClient.hget<boolean>(testKey, testField);
 
       expect(value).toEqual(testValue);
     });

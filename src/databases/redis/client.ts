@@ -1,5 +1,6 @@
 import errorHandler from "@utils/custom-error";
 import CError from "@utils/error";
+import { parseJSON } from "@utils/index";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
@@ -98,12 +99,17 @@ export default class RedisClient {
    * @description 값 가져오기
    * @param key 키
    */
-  async get(key: string) {
+  async get<T>(key: string) {
     this.isConnect();
 
-    const value = await this.instance.get(key);
+    let value = await this.instance.get(key);
+    if (!value) {
+      value = JSON.stringify("");
+    }
 
-    return value;
+    const realValue = parseJSON<T>(value);
+
+    return realValue;
   }
 
   /**
@@ -127,12 +133,17 @@ export default class RedisClient {
    * @param filed 필드
    * @returns 해시값
    */
-  async hget(key: string, filed: string) {
+  async hget<T>(key: string, filed: string) {
     this.isConnect();
 
-    const value = await this.instance.hGet(key, filed);
+    let value = await this.instance.hGet(key, filed);
+    if (!value) {
+      value = JSON.stringify("");
+    }
 
-    return value;
+    const realValue = parseJSON<T>(value);
+
+    return realValue;
   }
 
   /**
@@ -212,10 +223,13 @@ export default class RedisClient {
     this.isConnect();
 
     const customValue = JSON.stringify(value);
+    const result = await this.instance.set(key, customValue);
+    logger.debug(`Redis added ${key} value ${customValue} result ${result}`);
 
-    const count = await this.instance.set(key, customValue);
-    logger.debug(`Redis added ${count} ${key} value`);
+    if (!result) {
+      throw new CError("Redis set result null.. :(");
+    }
 
-    return count;
+    return true;
   }
 }
