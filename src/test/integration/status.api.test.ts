@@ -1,12 +1,10 @@
 import app from "@/app";
 import { startRedis, stopRedis } from "@databases/index";
-import RedisClient from "@databases/redis/client";
-import { statusService } from "@loaders/service.loader";
+import { redisClient, statusService } from "@loaders/service.loader";
 import { ERROR_MESSAGE } from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/http-status-code";
 import { RESPONSE_MESSAGE, RESPONSE_STATUS } from "@utils/response";
 import request from "supertest";
-import { Container } from "typedi";
 
 const path = "/api/status";
 
@@ -64,7 +62,6 @@ describe(`Get ${path} API test :)`, () => {
       });
 
       afterAll(async () => {
-        const redisClient = Container.get(RedisClient);
         await redisClient.del("serverStatus");
 
         await stopRedis();

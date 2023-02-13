@@ -1,10 +1,7 @@
 import { startRedis, stopRedis } from "@databases/index";
-import RedisClient from "@databases/redis/client";
-import { Container } from "typedi";
+import { redisClient } from "@loaders/service.loader";
 
 describe("Database redis test :)", () => {
-  const redisClient = Container.get(RedisClient);
-
   beforeAll(async () => {
     await startRedis();
   });

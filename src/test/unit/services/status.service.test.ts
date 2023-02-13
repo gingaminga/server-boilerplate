@@ -1,10 +1,6 @@
-import RedisClient from "@databases/redis/client";
-import { statusService } from "@loaders/service.loader";
-import { Container } from "typedi";
+import { redisClient, statusService } from "@loaders/service.loader";
 
 describe("Status service test :)", () => {
-  const redisClient = Container.get(RedisClient);
-
   describe("Function getServerStatus()", () => {
     test("Should get server status", async () => {
       redisClient.get = jest.fn().mockResolvedValue(false);

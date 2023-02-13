@@ -1,8 +1,5 @@
-import RedisClient from "@databases/redis/client";
+import { redisClient } from "@loaders/service.loader";
 import constants from "@utils/constants";
-import { Container } from "typedi";
-
-const redisClient = Container.get(RedisClient);
 
 /**
  * @description 레디스 실행
