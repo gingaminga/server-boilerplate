@@ -5,8 +5,6 @@ import { Container } from "typedi";
 describe("Status service test :)", () => {
   const redisClient = Container.get(RedisClient);
 
-  jest.mock("@databases/redis/client");
-
   describe("Function getServerStatus()", () => {
     test("Should get server status", async () => {
       redisClient.get = jest.fn().mockResolvedValue(false);
