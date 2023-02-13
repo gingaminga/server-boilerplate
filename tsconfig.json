@@ -32,6 +32,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@controllers/*": ["src/controllers/*"],
+      "@customTypes/*": ["src/types/*"],
       "@databases/*": ["src/databases/*"],
       "@loaders/*": ["src/loaders/*"],
       "@middlewares/*": ["src/middlewares/*"],
