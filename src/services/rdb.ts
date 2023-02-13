@@ -1,5 +1,5 @@
 import constants from "@utils/constants";
-import errorHandler from "@utils/errorHandler";
+import errorHandler from "@utils/custom-error";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { Service } from "typedi";
