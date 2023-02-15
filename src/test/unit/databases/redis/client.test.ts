@@ -1,5 +1,5 @@
 import { startRedis, stopRedis } from "@databases/index";
-import { redisClient } from "@loaders/service.loader";
+import { redisClient } from "@loaders/database.loader";
 
 describe("Database redis test :)", () => {
   beforeAll(async () => {

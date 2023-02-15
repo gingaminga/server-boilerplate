@@ -1,4 +1,5 @@
-import { redisClient, statusService } from "@loaders/service.loader";
+import { redisClient } from "@loaders/database.loader";
+import { statusService } from "@loaders/service.loader";
 
 describe("Status service test :)", () => {
   describe("Function getServerStatus()", () => {

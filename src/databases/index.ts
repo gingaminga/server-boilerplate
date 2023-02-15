@@ -1,4 +1,4 @@
-import { redisClient } from "@loaders/service.loader";
+import { redisClient } from "@loaders/database.loader";
 import constants from "@utils/constants";
 
 /**
