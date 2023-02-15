@@ -1,5 +1,5 @@
 import { checkStatusController } from "@controllers/status.controller";
-import { statusService } from "@loaders/container.loader";
+import { statusService } from "@loaders/service.loader";
 import { Request, Response } from "express";
 
 describe("Status controller test :)", () => {

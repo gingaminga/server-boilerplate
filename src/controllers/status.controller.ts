@@ -1,4 +1,4 @@
-import { statusService } from "@loaders/container.loader";
+import { statusService } from "@loaders/service.loader";
 import { RESPONSE_MESSAGE } from "@utils/response";
 import { RequestHandler } from "express";
 

@@ -1,4 +1,4 @@
-import { statusService } from "@loaders/container.loader";
+import { statusService } from "@loaders/service.loader";
 
 describe("Status service test :)", () => {
   test("Get server init status", () => {

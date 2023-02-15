@@ -1,4 +1,4 @@
-import { statusService } from "@loaders/container.loader";
+import { statusService } from "@loaders/service.loader";
 
 /**
  * @description 필수 초기 로더
