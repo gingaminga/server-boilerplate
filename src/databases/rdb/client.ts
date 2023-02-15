@@ -4,6 +4,7 @@ import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { Service } from "typedi";
 import { DataSource, DataSourceOptions } from "typeorm";
+import { createDatabase } from "typeorm-extension";
 
 @Service()
 export default class RelationDatabaseClient {
@@ -31,6 +32,11 @@ export default class RelationDatabaseClient {
    */
   private async connect(options: DataSourceOptions) {
     try {
+      await createDatabase({
+        options,
+        ifNotExist: true,
+      });
+
       this.instance = new DataSource(options);
 
       await this.instance.initialize();
