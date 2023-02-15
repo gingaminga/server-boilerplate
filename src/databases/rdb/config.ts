@@ -7,7 +7,7 @@ const options: DataSourceOptions = {
   dropSchema: constants.NODE_ENV === "test",
   entities: [path.join(__dirname, "/entities/*.{js,ts}")],
   host: constants.DATABASE.HOST,
-  logging: process.env.NODE_ENV === "development",
+  logging: constants.NODE_ENV === "development",
   password: constants.DATABASE.PASSWORD,
   port: constants.DATABASE.PORT,
   synchronize: true,
