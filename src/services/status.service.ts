@@ -1,5 +1,5 @@
 import StatusRepository from "@databases/rdb/repositories/status.repository";
-import { relationDatabaseClient } from "@loaders/container.loader";
+import { relationDatabaseClient } from "@loaders/database.loader";
 import logger from "@utils/logger";
 import { Inject, Service } from "typedi";
 
