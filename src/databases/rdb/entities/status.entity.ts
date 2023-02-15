@@ -1,15 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity()
-export default class Sample {
+export default class Status {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({
-    nullable: true,
-    type: "int",
+    type: "tinyint",
   })
-  num: number | null = null;
+  status!: number;
 
   @CreateDateColumn()
   created_at!: Date;

@@ -6,8 +6,24 @@ import { Service } from "typedi";
 import { DataSource, DataSourceOptions } from "typeorm";
 
 @Service()
-export default class RelationDatabaseService {
+export default class RelationDatabaseClient {
   private instance!: DataSource;
+
+  /**
+   * @description 연결 끊기
+   * @param options connection option
+   */
+  async close() {
+    try {
+      await this.instance.destroy();
+
+      return true;
+    } catch (error) {
+      errorHandler(error);
+
+      return false;
+    }
+  }
 
   /**
    * @description 연결하기
