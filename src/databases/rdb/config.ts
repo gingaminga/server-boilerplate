@@ -4,6 +4,7 @@ import { DataSourceOptions } from "typeorm";
 
 const options: DataSourceOptions = {
   database: constants.DATABASE.SCHEMA,
+  dropSchema: constants.NODE_ENV === "test",
   entities: [path.join(__dirname, "/entities/*.{js,ts}")],
   host: constants.DATABASE.HOST,
   logging: process.env.NODE_ENV === "development",
