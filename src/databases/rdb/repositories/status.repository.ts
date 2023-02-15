@@ -31,6 +31,6 @@ export default class StatusRepository extends BaseRepository<Status> {
    * @description 상태 가져오기
    */
   getStatus() {
-    return this.queryBuilder.select().where("id = 1").getRawOne<StatusDTO>();
+    return this.queryBuilder.select("status as status").where("id = 1").getRawOne<StatusDTO>();
   }
 }
