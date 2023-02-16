@@ -1,34 +1,41 @@
 import validationErrorHandlerMiddleware from "@middlewares/validation-error-handler.middleware";
+import HTTP_STATUS_CODE from "@utils/http-status-code";
+import { ERROR_MESSAGE } from "@utils/error";
 import { isCelebrateError } from "celebrate";
 import { Request, Response } from "express";
 
 jest.mock("celebrate");
 const mockedIsCelebrateError = jest.mocked(isCelebrateError);
 
-describe("Validation error handler middleware test :)", () => {
-  const req = {} as Request;
-  const res = {
-    error: jest.fn(),
-  } as unknown as Response;
-  const next = jest.fn();
-  let err: unknown;
+const req = {} as Request;
+const res = {
+  error: jest.fn(),
+} as unknown as Response;
+const next = jest.fn();
+let err: unknown;
 
+describe("Validation error handler middleware test :)", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  test("Error occurred", () => {
+  test(`Should call res.error() with a ${HTTP_STATUS_CODE.INVALID_VALUE} error`, () => {
     mockedIsCelebrateError.mockReturnValue(true);
     validationErrorHandlerMiddleware(err, req, res, next);
 
-    expect(res.error).toBeCalled();
     expect(res.error).toBeCalledTimes(1);
+    expect(res.error).toBeCalledWith(
+      expect.objectContaining({
+        code: HTTP_STATUS_CODE.INVALID_VALUE,
+        message: ERROR_MESSAGE.INVALID_VALUE,
+      }),
+    );
   });
 
-  test("Nothing to do", () => {
+  test("Should nothing to do", () => {
     mockedIsCelebrateError.mockReturnValue(false);
     validationErrorHandlerMiddleware(err, req, res, next);
 
-    expect(res.error).toHaveBeenCalledTimes(0);
+    expect(res.error).not.toHaveBeenCalled();
   });
 });

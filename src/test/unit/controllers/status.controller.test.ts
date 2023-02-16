@@ -1,60 +1,67 @@
 import { checkStatusController } from "@controllers/status.controller";
 import { statusService } from "@loaders/service.loader";
+import { RESPONSE_MESSAGE } from "@utils/response";
 import { Request, Response } from "express";
 
-describe("Status controller test :)", () => {
-  const req = {
-    query: {},
-  } as unknown as Request;
-  const res = {
-    result: jest.fn(),
-    send: jest.fn(),
-  } as unknown as Response;
-  const next = jest.fn();
+const req = {
+  query: {},
+} as unknown as Request;
+const res = {
+  result: jest.fn(),
+  send: jest.fn(),
+} as unknown as Response;
+const next = jest.fn();
 
-  beforeEach(() => {
-    (req.query.html as unknown) = false;
-  });
-
+describe("Check status controller test :)", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe("Server status is bad :(", () => {
-    statusService.getServerStatus = jest.fn(() => false);
+  describe("Server status is bad", () => {
+    beforeEach(() => {
+      jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+    });
 
-    test("Response html", () => {
+    test("Should response with bad message in html", () => {
       (req.query.html as unknown) = true;
       checkStatusController(req, res, next);
 
-      expect(res.send).toBeCalled();
-      expect(res.send).toBeCalledTimes(1);
+      expect(statusService.getServerStatus).toHaveBeenCalled();
+      expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
+      expect(res.result).not.toHaveBeenCalled();
     });
 
-    test("Response json", () => {
+    test("Should response with bad message in json", () => {
+      (req.query.html as unknown) = false;
       checkStatusController(req, res, next);
 
-      expect(res.result).toBeCalled();
-      expect(res.result).toBeCalledTimes(1);
+      expect(statusService.getServerStatus).toHaveBeenCalled();
+      expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
+      expect(res.send).not.toHaveBeenCalled();
     });
   });
 
-  describe("Server status is good :)", () => {
-    statusService.getServerStatus = jest.fn(() => true);
+  describe("Server status is good", () => {
+    beforeEach(() => {
+      jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+    });
 
-    test("Response html", () => {
+    test("Should response with good message in html", () => {
       (req.query.html as unknown) = true;
       checkStatusController(req, res, next);
 
-      expect(res.send).toBeCalled();
-      expect(res.send).toBeCalledTimes(1);
+      expect(statusService.getServerStatus).toHaveBeenCalled();
+      expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
+      expect(res.result).not.toHaveBeenCalled();
     });
 
-    test("Response json", () => {
+    test("Should response with good message in json", () => {
+      (req.query.html as unknown) = false;
       checkStatusController(req, res, next);
 
-      expect(res.result).toBeCalled();
-      expect(res.result).toBeCalledTimes(1);
+      expect(statusService.getServerStatus).toHaveBeenCalled();
+      expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
+      expect(res.send).not.toHaveBeenCalled();
     });
   });
 });
