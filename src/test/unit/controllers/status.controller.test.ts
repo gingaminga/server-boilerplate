@@ -7,6 +7,7 @@ const req = {
   query: {},
 } as unknown as Request;
 const res = {
+  error: jest.fn(),
   result: jest.fn(),
   send: jest.fn(),
 } as unknown as Response;
@@ -15,6 +16,25 @@ const next = jest.fn();
 describe("Check status controller test :)", () => {
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  describe("Occured error", () => {
+    beforeEach(() => {
+      const error = new Error("Intenal server errror");
+      jest.spyOn(statusService, "getServerStatus").mockRejectedValue(error);
+    });
+
+    test("Should throw error in json", async () => {
+      const error = new Error("Intenal server errror");
+
+      (req.query.html as unknown) = false;
+      await checkStatusController(req, res, next);
+
+      expect(statusService.getServerStatus).toBeCalledTimes(1);
+      expect(res.error).toBeCalledWith(error);
+      expect(res.send).not.toBeCalled();
+      expect(res.result).not.toBeCalled();
+    });
   });
 
   describe("Server status is bad", () => {
