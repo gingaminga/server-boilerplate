@@ -1,4 +1,3 @@
-import errorHandler from "@utils/custom-error";
 import CError from "@utils/error";
 import { parseJSON } from "@utils/index";
 import logger from "@utils/logger";
@@ -22,15 +21,11 @@ export default class RedisClient {
    * @description 상태 확인하기
    */
   private async checkStatus() {
-    try {
-      logger.info(`REDIS ${colors.blue("PING")}...`);
+    logger.info(`REDIS ${colors.blue("PING")}...`);
 
-      const response = await this.instance.ping();
+    const response = await this.instance.ping();
 
-      logger.info(`REDIS ${colors.blue(response)} :)`);
-    } catch (error) {
-      errorHandler(error);
-    }
+    logger.info(`REDIS ${colors.blue(response)} :)`);
   }
 
   /**
@@ -38,17 +33,9 @@ export default class RedisClient {
    * @returns 성공(true)/실패(false) 여부
    */
   async close() {
-    try {
-      await this.instance.disconnect();
+    await this.instance.disconnect();
 
-      this.connectStatus = false;
-
-      return true;
-    } catch (error) {
-      errorHandler(error);
-
-      return false;
-    }
+    this.connectStatus = false;
   }
 
   /**
@@ -56,29 +43,21 @@ export default class RedisClient {
    * @param options connection option
    */
   private async connect(options: IConnectionOption) {
-    try {
-      const { host, port, password } = options;
+    const { host, port, password } = options;
 
-      const connectionOption = {
-        socket: {
-          host,
-          port,
-        },
-        password,
-      };
+    const connectionOption = {
+      socket: {
+        host,
+        port,
+      },
+      password,
+    };
 
-      this.instance = createClient(connectionOption);
+    this.instance = createClient(connectionOption);
 
-      await this.instance.connect();
+    await this.instance.connect();
 
-      this.registerEvent();
-
-      return true;
-    } catch (error) {
-      errorHandler(error);
-
-      return false;
-    }
+    this.registerEvent();
   }
 
   /**
@@ -91,8 +70,6 @@ export default class RedisClient {
 
     const count = await this.instance.del(key);
     logger.debug(`Redis deleted ${count} ${key} value`);
-
-    return count;
   }
 
   /**
@@ -123,8 +100,6 @@ export default class RedisClient {
 
     const count = await this.instance.hDel(key, filed);
     logger.debug(`Redis deleted ${count} ${key}-${filed} hash value`);
-
-    return count;
   }
 
   /**
@@ -160,8 +135,6 @@ export default class RedisClient {
 
     const count = await this.instance.hSet(key, filed, customValue);
     logger.debug(`Redis added ${count} ${key}-${filed} hash value`);
-
-    return count;
   }
 
   /**
@@ -169,13 +142,10 @@ export default class RedisClient {
    * @param options connection option
    */
   async initialized(options: IConnectionOption) {
-    const isConnect = await this.connect(options);
+    await this.connect(options);
+    await this.checkStatus();
 
-    this.connectStatus = isConnect;
-
-    if (isConnect) {
-      await this.checkStatus();
-    }
+    this.connectStatus = true;
   }
 
   /**
@@ -227,9 +197,7 @@ export default class RedisClient {
     logger.debug(`Redis added ${key} value ${customValue} result ${result}`);
 
     if (!result) {
-      throw new CError("Redis set result null.. :(");
+      throw new CError("Not connect redis.. :(");
     }
-
-    return true;
   }
 }
