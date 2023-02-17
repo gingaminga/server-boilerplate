@@ -26,8 +26,8 @@ export default (req: Request, res: Response, next: NextFunction) => {
   };
 
   res.error = (error) => {
-    logger.error(error.stack);
-    const { code, message } = new CError(error);
+    const { code, message, stack } = new CError(error);
+    logger.error(stack);
 
     res.status(code).json(getResponseFormat(false, message));
   };
