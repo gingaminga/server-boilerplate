@@ -3,17 +3,21 @@ import { RESPONSE_MESSAGE } from "@utils/response";
 import { RequestHandler } from "express";
 
 export const checkStatusController: RequestHandler = async (req, res) => {
-  const isHtml = Boolean(req.query.html);
+  try {
+    const isHtml = Boolean(req.query.html);
 
-  const isGood = await statusService.getServerStatus();
+    const isGood = await statusService.getServerStatus();
 
-  const data = isGood ? RESPONSE_MESSAGE.GOOD : RESPONSE_MESSAGE.BAD;
+    const data = isGood ? RESPONSE_MESSAGE.GOOD : RESPONSE_MESSAGE.BAD;
 
-  if (isHtml) {
-    res.send(data);
+    if (isHtml) {
+      res.send(data);
 
-    return;
+      return;
+    }
+
+    res.result(data);
+  } catch (error) {
+    res.error(error);
   }
-
-  res.result(data);
 };
