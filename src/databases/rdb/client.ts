@@ -1,5 +1,4 @@
 import constants from "@utils/constants";
-import errorHandler from "@utils/custom-error";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { Service } from "typedi";
@@ -15,15 +14,7 @@ export default class RelationDatabaseClient {
    * @param options connection option
    */
   async close() {
-    try {
-      await this.instance.destroy();
-
-      return true;
-    } catch (error) {
-      errorHandler(error);
-
-      return false;
-    }
+    await this.instance.destroy();
   }
 
   /**
@@ -31,22 +22,16 @@ export default class RelationDatabaseClient {
    * @param options connection option
    */
   private async connect(options: DataSourceOptions) {
-    try {
-      await createDatabase({
-        options,
-        ifNotExist: true,
-      });
+    await createDatabase({
+      options,
+      ifNotExist: true,
+    });
 
-      this.instance = new DataSource(options);
+    this.instance = new DataSource(options);
 
-      await this.instance.initialize();
+    await this.instance.initialize();
 
-      return true;
-    } catch (error) {
-      errorHandler(error);
-
-      return false;
-    }
+    return true;
   }
 
   /**
