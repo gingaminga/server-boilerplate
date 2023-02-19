@@ -7,8 +7,8 @@ import { Service } from "typedi";
 
 interface IConnectionOption {
   host: string;
-  port: number;
   password: string;
+  port: number;
 }
 
 @Service()
