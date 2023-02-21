@@ -74,7 +74,7 @@ export default winston.createLogger({
       filename: `${constants.PROJECT_NAME}_%DATE%.log`,
       level: constants.NODE_ENV === "production" ? Level.INFO : Level.DEBUG,
       maxFiles: constants.LOG_MAX_FILES,
-      maxSize: constants.LOG_MAX_SIZE ?? null,
+      maxSize: constants.LOG_MAX_SIZE,
       zippedArchive: constants.NODE_ENV !== "development",
     }),
   ],
