@@ -1,4 +1,5 @@
 {
+  "collectCoverage": true,
   "moduleNameMapper": {
     "^@/(.*)$": ["<rootDir>/src/$1"],
     "^@controllers/(.*)$": ["<rootDir>/src/controllers/$1"],
