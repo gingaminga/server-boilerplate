@@ -15,7 +15,7 @@
 
 ```bash
 # 로컬로 다운받기
-$ git clone https://github.com/gingaminga/express-server-bolierplate.git
+$ git clone -b express --single-branch https://github.com/gingaminga/express-server-bolierplate.git
 
 # 다운받은 경로로 이동
 $ cd express-server-bolierplate
@@ -53,7 +53,7 @@ $ npm run eslint:fix
 $ npm run prettier:write
 ```
 
-> 자세한 내용은 [package.json](https://github.com/gingaminga/express-server-bolierplate/blob/main/package.json)의 `script`를 확인하세요. :)
+> 자세한 내용은 [package.json](https://github.com/gingaminga/express-server-bolierplate/blob/express/package.json)의 `script`를 확인하세요. :)
 
 ### .env 설정
 
@@ -65,7 +65,7 @@ $ npm run prettier:write
 $ vi .env
 ```
 
-> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/express-server-bolierplate/blob/main/.env.sample) 파일을 확인하세요 :)
+> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/express-server-bolierplate/blob/express/.env.sample) 파일을 확인하세요 :)
 
 만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
 
