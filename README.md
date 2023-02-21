@@ -115,10 +115,10 @@ $ git remote add origin [자신의 레포지토리 주소]
 $ git remote add boilerplate https://github.com/gingaminga/express-server-bolierplate.git
 
 # boilerplate repository 반영사항 가져오기
-$ git fetch boilerplate main
+$ git fetch boilerplate express
 
 # 반영사항을 현재 (자신의) 로컬 브랜치에 합치기
-$ git rebase boilerplate/main
+$ git rebase boilerplate/express
 # or
-$ git merge boilerplate/main
+$ git merge boilerplate/express
 ```
