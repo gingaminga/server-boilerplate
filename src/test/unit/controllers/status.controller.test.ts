@@ -7,6 +7,7 @@ const req = {
   query: {},
 } as unknown as Request;
 const res = {
+  error: jest.fn(),
   result: jest.fn(),
   send: jest.fn(),
 } as unknown as Response;
@@ -17,9 +18,28 @@ describe("Check status controller test :)", () => {
     jest.clearAllMocks();
   });
 
+  describe("Occured error", () => {
+    beforeEach(() => {
+      const error = new Error("Intenal server errror");
+      jest.spyOn(statusService, "getServerStatus").mockRejectedValue(error);
+    });
+
+    test("Should throw error in json", async () => {
+      const error = new Error("Intenal server errror");
+
+      (req.query.html as unknown) = false;
+      await checkStatusController(req, res, next);
+
+      expect(statusService.getServerStatus).toBeCalledTimes(1);
+      expect(res.error).toBeCalledWith(error);
+      expect(res.send).not.toBeCalled();
+      expect(res.result).not.toBeCalled();
+    });
+  });
+
   describe("Server status is bad", () => {
-    beforeAll(() => {
-      statusService.getServerStatus = jest.fn().mockResolvedValue(false);
+    beforeEach(() => {
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
     });
 
     test("Should response with bad message in html", async () => {
@@ -42,8 +62,8 @@ describe("Check status controller test :)", () => {
   });
 
   describe("Server status is good", () => {
-    beforeAll(() => {
-      statusService.getServerStatus = jest.fn().mockResolvedValue(true);
+    beforeEach(() => {
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
     });
 
     test("Should response with good message in html", async () => {

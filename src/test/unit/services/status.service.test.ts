@@ -1,52 +1,62 @@
+import Status from "@databases/rdb/entities/status.entity";
 import { statusRepository } from "@loaders/repository.loader";
 import { statusService } from "@loaders/service.loader";
+import { InsertResult } from "typeorm";
 
 describe("Status service test :)", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe("Function getServerStatus()", () => {
-    const response = {
-      created_at: "",
-      id: 1,
-      status: 1,
-    };
+    let response: Status;
 
-    test("Should return true", async () => {
-      statusRepository.getStatus = jest.fn().mockResolvedValue(response);
+    beforeEach(() => {
+      response = {
+        created_at: new Date(),
+        id: 1,
+        status: 1,
+      };
+    });
 
-      const serverStatus = await statusService.getServerStatus();
-      expect(serverStatus).toEqual(true);
+    test("Should throw error when RDB connection is bad", async () => {
+      const error = new Error("Failure RDB disconnect ");
+      jest.spyOn(statusRepository, "getStatus").mockRejectedValue(error);
+
+      await expect(statusService.getServerStatus()).rejects.toThrowError(error);
     });
 
     test("Should return false", async () => {
       response.status = 0;
-      statusRepository.getStatus = jest.fn().mockResolvedValue(response);
+      jest.spyOn(statusRepository, "getStatus").mockResolvedValue(response);
 
       const serverStatus = await statusService.getServerStatus();
       expect(serverStatus).toEqual(false);
     });
 
-    test("Should throw error", async () => {
-      statusRepository.getStatus = jest.fn().mockRejectedValue("Error test");
+    test("Should return true", async () => {
+      jest.spyOn(statusRepository, "getStatus").mockResolvedValue(response);
+
       const serverStatus = await statusService.getServerStatus();
-      expect(serverStatus).toEqual(false);
+      expect(serverStatus).toEqual(true);
     });
   });
 
   describe("Function setServerStatus()", () => {
-    test("Should return true", async () => {
-      statusRepository.addOrModifyStatus = jest.fn().mockResolvedValue(true);
+    const response = {} as InsertResult;
 
-      const isSuccess1 = await statusService.setServerStatus(true);
-      expect(isSuccess1).toEqual(true);
+    test("Should throw error when RDB connection is bad", async () => {
+      const error = new Error("Failure RDB disconnect ");
+      jest.spyOn(statusRepository, "addOrModifyStatus").mockRejectedValue(error);
 
-      const isSuccess2 = await statusService.setServerStatus(false);
-      expect(isSuccess2).toEqual(true);
+      await expect(statusService.setServerStatus(true)).rejects.toThrowError(error);
     });
 
-    test("Should return false", async () => {
-      statusRepository.addOrModifyStatus = jest.fn().mockRejectedValue("Error test");
+    test("Should return true", async () => {
+      jest.spyOn(statusRepository, "addOrModifyStatus").mockResolvedValue(response);
 
-      const isSuccess = await statusService.setServerStatus(true);
-      expect(isSuccess).toEqual(false);
+      const serverStatus = await statusService.setServerStatus(true);
+      expect(serverStatus).toEqual(true);
     });
   });
 });
