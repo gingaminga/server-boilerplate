@@ -37,8 +37,11 @@ $ npm run dev
 # typescript to javascript (transpile)
 $ npm run build
 
-# Test 하기
-$ npm run test
+# 단위 Test 하기
+$ npm run test:unit
+
+# 통합 Test 하기
+$ npm run test:integrate
 
 # src 하위 폴더 eslint 검사
 $ npm run eslint
@@ -55,7 +58,7 @@ $ npm run prettier:write
 ### .env 설정
 
 .env 파일이 없어도 문제없이 동작해요.
-하지만 특정 값들은 따로 설정할 수 있도록 했어요. :)
+하지만 특정 상수값들은 따로 설정할 수 있도록 했어요. :)
 
 ```bash
 # .env 파일 생성 및 작성하기
@@ -64,16 +67,27 @@ $ vi .env
 
 > .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/express-server-bolierplate/blob/main/.env.sample) 파일을 확인하세요 :)
 
+만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
+
+**위에 3가지 형식에 대한 파일이 없다면, `.env` 파일을 참조합니다.**
+
 ## 📁폴더 및 파일 설명
 
+- `coverage` : 테스트 품질 지표를 나타내는 폴더
 - `dist` : `src`폴더를 기준으로 트랜스파일링하여 javascript로 빌드된 폴더(`tsconfig.json`에서 변경 가능)
 - `logs` : `.env` 파일로 설정하지 않았다면 생기는 폴더로, winston을 사용한 log를 쌓음
 - `src` : 실제 서비스에 대한 코드가 들어있는 폴더
-  - `routers` : 실제 API와 관련된 로직이 들어있는 폴더
+  - `controllers` : 컨트롤러로 구성된 폴더
+  - `loaders` : 서비스의 초기 설정을 구성하는 로직이 들어있는 폴더
   - `middlewares` : 공통 미들웨어 로직이 들어있는 폴더
+  - `routes` : 실제 API와 관련된 로직이 들어있는 폴더
+  - `services` : 기능 단위의 서비스 로직이 들어있는 폴더
   - `test` : 테스트 로직 폴더
+    - `integration` : 통합 테스트 폴더
+    - `unit` : 단위 테스트 폴더
   - `types` : 커스텀 타입을 설정하는 폴더
   - `utils` : 각종 유틸들
+  - `validators` : 유효성 검사를 위한 폴더
   - `app.ts` : express 설정의 root 부분
   - `index.ts` : 해당 프로젝트의 root 부분
 
