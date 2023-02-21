@@ -9,7 +9,8 @@
     "eslint": "eslint ./src/**/*.ts",
     "eslint:fix": "eslint --fix ./src/**/*.ts",
     "prettier:write": "prettier --write ./src/**/*.ts",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit"
+    "test:integrate": "cross-env NODE_ENV=test jest --testMatch \"<rootDir>/src/test/integration/**/*.test.ts\" --detectOpenHandles --forceExit",
+    "test:unit": "cross-env NODE_ENV=test jest --testMatch \"<rootDir>/src/test/unit/**/*.test.ts\" --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
