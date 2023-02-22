@@ -91,6 +91,7 @@ $ vi .env
   - `utils` : 각종 유틸들
   - `validators` : 유효성 검사를 위한 폴더
   - `app.ts` : express 설정의 root 부분
+  - `server.ts` : 서버 객체를 관리하는 파일
   - `index.ts` : 해당 프로젝트의 root 부분
 
 ## 👍 자신의 프로젝트로 사용하기
