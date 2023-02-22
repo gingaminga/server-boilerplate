@@ -1,4 +1,4 @@
-import validationErrorHandlerMiddleware from "@middlewares/validation-error-handler.middleware";
+import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
 import HTTP_STATUS_CODE from "@utils/http-status-code";
 import { ERROR_MESSAGE } from "@utils/error";
 import { isCelebrateError } from "celebrate";
@@ -21,7 +21,7 @@ describe("Validation error handler middleware test :)", () => {
 
   test(`Should call res.error() with a ${HTTP_STATUS_CODE.INVALID_VALUE} error`, () => {
     mockedIsCelebrateError.mockReturnValue(true);
-    validationErrorHandlerMiddleware(err, req, res, next);
+    errorHandlerMiddleware(err, req, res, next);
 
     expect(res.error).toBeCalledTimes(1);
     expect(res.error).toBeCalledWith(
@@ -32,10 +32,16 @@ describe("Validation error handler middleware test :)", () => {
     );
   });
 
-  test("Should nothing to do", () => {
+  test(`Should call res.error() with a ${HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR} error`, () => {
     mockedIsCelebrateError.mockReturnValue(false);
-    validationErrorHandlerMiddleware(err, req, res, next);
+    errorHandlerMiddleware(err, req, res, next);
 
-    expect(res.error).not.toHaveBeenCalled();
+    expect(res.error).toBeCalledTimes(1);
+    expect(res.error).toBeCalledWith(
+      expect.objectContaining({
+        code: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      }),
+    );
   });
 });
