@@ -1,11 +1,11 @@
-# Server boilerplate
+# Server boilerplate (with Redis)
 
 ## ❓왜 만들게 되었나?
 
 초기 구축마다 똑같은 구조와 라이브러리로 반복 작업을 하는 것이 지겨웠어요.<br/>
 저만의 보일러플레이트를 만들어서 단순 작업들을 없애기 위해 만들었어요. :)
 
-**다른 브랜치들의 기반이 되는 중요 브랜치입니다.**
+**express 브랜치를 기반으로 작성되었습니다.**
 
 ## ⚒기술 스택
 
@@ -17,7 +17,7 @@
 
 ```bash
 # 로컬로 다운받기
-$ git clone -b express --single-branch https://github.com/gingaminga/server-bolierplate.git
+$ git clone -b redis --single-branch https://github.com/gingaminga/server-bolierplate.git
 
 # 다운받은 경로로 이동
 $ cd server-bolierplate
@@ -55,7 +55,7 @@ $ npm run eslint:fix
 $ npm run prettier:write
 ```
 
-> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/express/package.json)의 `script`를 확인하세요. :)
+> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/redis/package.json)의 `script`를 확인하세요. :)
 
 ### .env 설정
 
@@ -67,7 +67,7 @@ $ npm run prettier:write
 $ vi .env
 ```
 
-> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/express/.env.sample) 파일을 확인하세요 :)
+> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/redis/.env.sample) 파일을 확인하세요 :)
 
 만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
 
@@ -80,6 +80,7 @@ $ vi .env
 - `logs` : `.env` 파일로 설정하지 않았다면 생기는 폴더로, winston을 사용한 log를 쌓음
 - `src` : 실제 서비스에 대한 코드가 들어있는 폴더
   - `controllers` : 컨트롤러로 구성된 폴더
+  - `databases` : 데이터베이스 관련 로직이 있는 폴더
   - `loaders` : 서비스의 초기 설정을 구성하는 로직이 들어있는 폴더
   - `middlewares` : 공통 미들웨어 로직이 들어있는 폴더
   - `routes` : 실제 API와 관련된 로직이 들어있는 폴더
@@ -118,10 +119,10 @@ $ git remote add origin [자신의 레포지토리 주소]
 $ git remote add boilerplate https://github.com/gingaminga/server-bolierplate.git
 
 # boilerplate repository 반영사항 가져오기
-$ git fetch boilerplate express
+$ git fetch boilerplate redis
 
 # 반영사항을 현재 (자신의) 로컬 브랜치에 합치기
-$ git rebase boilerplate/express
+$ git rebase boilerplate/redis
 # or
-$ git merge boilerplate/express
+$ git merge boilerplate/redis
 ```
