@@ -52,6 +52,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-asyncify": "^1.1.0",
     "lodash": "^4.17.21",
     "on-finished": "^2.4.1",
     "reflect-metadata": "^0.1.13",
