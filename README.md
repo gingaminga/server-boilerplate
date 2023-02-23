@@ -17,10 +17,10 @@
 
 ```bash
 # 로컬로 다운받기
-$ git clone -b express --single-branch https://github.com/gingaminga/express-server-bolierplate.git
+$ git clone -b express --single-branch https://github.com/gingaminga/server-bolierplate.git
 
 # 다운받은 경로로 이동
-$ cd express-server-bolierplate
+$ cd server-bolierplate
 
 # 라이브러리 설치
 $ npm install
@@ -55,7 +55,7 @@ $ npm run eslint:fix
 $ npm run prettier:write
 ```
 
-> 자세한 내용은 [package.json](https://github.com/gingaminga/express-server-bolierplate/blob/express/package.json)의 `script`를 확인하세요. :)
+> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/express/package.json)의 `script`를 확인하세요. :)
 
 ### .env 설정
 
@@ -67,7 +67,7 @@ $ npm run prettier:write
 $ vi .env
 ```
 
-> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/express-server-bolierplate/blob/express/.env.sample) 파일을 확인하세요 :)
+> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/express/.env.sample) 파일을 확인하세요 :)
 
 만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
 
@@ -101,8 +101,8 @@ git remote 를 변경하거나 삭제하면 돼요. :)
 ```bash
 # 원격지 확인
 $ git remote -v
-# origin  https://github.com/gingaminga/express-server-bolierplate.git (fetch)
-# origin  https://github.com/gingaminga/express-server-bolierplate.git (push)
+# origin  https://github.com/gingaminga/server-bolierplate.git (fetch)
+# origin  https://github.com/gingaminga/server-bolierplate.git (push)
 
 # 기존 원격지 삭제
 $ git remote rm origin
@@ -115,7 +115,7 @@ $ git remote add origin [자신의 레포지토리 주소]
 
 ```bash
 # 원격지 추가
-$ git remote add boilerplate https://github.com/gingaminga/express-server-bolierplate.git
+$ git remote add boilerplate https://github.com/gingaminga/server-bolierplate.git
 
 # boilerplate repository 반영사항 가져오기
 $ git fetch boilerplate express
