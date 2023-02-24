@@ -56,6 +56,7 @@
     "lodash": "^4.17.21",
     "on-finished": "^2.4.1",
     "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.6.1",
     "typedi": "^0.10.0",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
