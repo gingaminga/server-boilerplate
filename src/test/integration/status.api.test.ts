@@ -10,8 +10,8 @@ import request from "supertest";
 const path = "/api/status";
 
 describe(`Get ${path} API test :)`, () => {
-  describe(`Return ${HTTP_STATUS_CODE.INVALID_VALUE}`, () => {
-    test("should parameter value is not true/false of string type", async () => {
+  describe(`HTTP status ${HTTP_STATUS_CODE.INVALID_VALUE}`, () => {
+    test("Should html parameter value is not boolean of string type", async () => {
       const { body, status } = await request(app).get(path).query({
         html: "test",
       });
@@ -22,7 +22,7 @@ describe(`Get ${path} API test :)`, () => {
     });
   });
 
-  describe(`Return ${HTTP_STATUS_CODE.OK}`, () => {
+  describe(`HTTP status ${HTTP_STATUS_CODE.OK}`, () => {
     describe("Server status is bad", () => {
       beforeAll(() => {
         jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
