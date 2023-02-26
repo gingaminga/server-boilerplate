@@ -13,6 +13,13 @@ describe("Status service test :)", () => {
       expect(statusService.getServerStatus()).rejects.toEqual("Error test");
     });
 
+    test("Should return false when server status is null", async () => {
+      redisClient.get = jest.fn().mockResolvedValue(null);
+
+      const serverStatus = await statusService.getServerStatus();
+      expect(serverStatus).toEqual(false);
+    });
+
     test("Should return false when server status is bad", async () => {
       redisClient.get = jest.fn().mockResolvedValue(false);
 
@@ -33,6 +40,12 @@ describe("Status service test :)", () => {
       redisClient.set = jest.fn().mockRejectedValue("Error test");
 
       expect(statusService.setServerStatus(true)).rejects.toEqual("Error test");
+    });
+
+    test("Should return true", async () => {
+      redisClient.set = jest.fn().mockResolvedValue("");
+
+      expect(statusService.setServerStatus(true)).toEqual(true);
     });
   });
 });

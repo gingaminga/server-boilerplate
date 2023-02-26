@@ -1,5 +1,4 @@
 import CError from "@utils/error";
-import { parseJSON } from "@utils/index";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
@@ -76,17 +75,13 @@ export default class RedisClient {
    * @description 값 가져오기
    * @param key 키
    */
-  async get<T>(key: string) {
+  async get(key: string) {
     this.isConnect();
 
-    let value = await this.instance.get(key);
-    if (!value) {
-      value = JSON.stringify("");
-    }
+    const value = await this.instance.get(key);
+    logger.warn(`[Redis] Get ${key} has no value`);
 
-    const realValue = parseJSON<T>(value);
-
-    return realValue;
+    return value;
   }
 
   /**
@@ -108,17 +103,13 @@ export default class RedisClient {
    * @param filed 필드
    * @returns 해시값
    */
-  async hget<T>(key: string, filed: string) {
+  async hget(key: string, filed: string) {
     this.isConnect();
 
-    let value = await this.instance.hGet(key, filed);
-    if (!value) {
-      value = JSON.stringify("");
-    }
+    const value = await this.instance.hGet(key, filed);
+    logger.warn(`[Redis] Get ${key}-${filed} has no value`);
 
-    const realValue = parseJSON<T>(value);
-
-    return realValue;
+    return value;
   }
 
   /**
@@ -128,13 +119,11 @@ export default class RedisClient {
    * @param value 값
    * @returns 추가된 개수
    */
-  async hset(key: string, filed: string, value: unknown) {
+  async hset(key: string, filed: string, value: string) {
     this.isConnect();
 
-    const customValue = JSON.stringify(value);
-
-    const count = await this.instance.hSet(key, filed, customValue);
-    logger.debug(`Redis added ${count} ${key}-${filed} hash value`);
+    const count = await this.instance.hSet(key, filed, value);
+    logger.debug(`Redis added ${count} ${key}-${filed} hash ${value} value`);
   }
 
   /**
@@ -189,12 +178,11 @@ export default class RedisClient {
    * @param key 키
    * @param value 값
    */
-  async set(key: string, value: unknown) {
+  async set(key: string, value: string) {
     this.isConnect();
 
-    const customValue = JSON.stringify(value);
-    const result = await this.instance.set(key, customValue);
-    logger.debug(`Redis added ${key} value ${customValue} result ${result}`);
+    const result = await this.instance.set(key, value);
+    logger.debug(`Redis added ${key} value ${value} result ${result}`);
 
     if (!result) {
       throw new CError("Not connect redis.. :(");

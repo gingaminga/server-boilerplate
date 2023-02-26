@@ -9,12 +9,16 @@ export default class StatusService {
   }
 
   async getServerStatus() {
-    const status = await this.redisClient.get<boolean>(redisKey.SERVER_STATUS);
+    const status = await this.redisClient.get(redisKey.SERVER_STATUS);
 
-    return status;
+    const isGood = status === "good";
+
+    return isGood;
   }
 
-  async setServerStatus(status: boolean) {
+  async setServerStatus(isGood: boolean) {
+    const status = isGood ? "good" : "bad";
+
     await this.redisClient.set(redisKey.SERVER_STATUS, status);
 
     return true;

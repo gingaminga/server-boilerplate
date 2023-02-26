@@ -104,7 +104,7 @@ describe("Database redis test :)", () => {
         },
       });
 
-      const value = await redisClient.get<string>(testKey);
+      const value = await redisClient.get(testKey);
 
       expect(value).toEqual("");
     });
@@ -112,10 +112,10 @@ describe("Database redis test :)", () => {
     test(`Should return ${testValue} value by get when redis status is normal`, async () => {
       Object.defineProperty(redisClient, "instance", {
         value: {
-          get: jest.fn().mockResolvedValue(JSON.stringify(testValue)),
+          get: jest.fn().mockResolvedValue(testValue),
         },
       });
-      const value = await redisClient.get<string>(testKey);
+      const value = await redisClient.get(testKey);
 
       expect(value).toEqual(testValue);
     });
@@ -128,7 +128,7 @@ describe("Database redis test :)", () => {
         },
       });
 
-      const value = await redisClient.hget<string>(testKey, testField);
+      const value = await redisClient.hget(testKey, testField);
 
       expect(value).toEqual("");
     });
@@ -136,11 +136,11 @@ describe("Database redis test :)", () => {
     test(`Should return ${testValue} value by hget when redis status is normal`, async () => {
       Object.defineProperty(redisClient, "instance", {
         value: {
-          hGet: jest.fn().mockResolvedValue(JSON.stringify(testValue)),
+          hGet: jest.fn().mockResolvedValue(testValue),
         },
       });
 
-      const value = await redisClient.hget<string>(testKey, testField);
+      const value = await redisClient.hget(testKey, testField);
 
       expect(value).toEqual(testValue);
     });
