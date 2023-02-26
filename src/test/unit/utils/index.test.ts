@@ -16,11 +16,16 @@ describe("Util function test :)", () => {
   });
 
   describe("Function parseJSON", () => {
-    test(`Should only return string`, () => {
-      const test = "hihi";
-      const value = parseJSON(test);
+    test(`Should return null when parsing is not good v1`, () => {
+      const value = parseJSON("hihi");
 
-      expect(value).toEqual(test);
+      expect(value).toEqual(null);
+    });
+
+    test(`Should return null when parsing is not good v2`, () => {
+      const value = parseJSON("{data: 1}");
+
+      expect(value).toBe(null);
     });
 
     test(`Should return ${JSON.stringify(data)}`, () => {

@@ -11,5 +11,5 @@ export const parseJSON = <T>(value: string) => {
     /* empty */
   }
 
-  return value as T;
+  return null;
 };
