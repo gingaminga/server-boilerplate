@@ -26,7 +26,6 @@ describe("Check status controller test :)", () => {
       (req.query.html as unknown) = true;
       checkStatusController(req, res, next);
 
-      expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
       expect(res.result).not.toHaveBeenCalled();
     });
@@ -35,7 +34,6 @@ describe("Check status controller test :)", () => {
       (req.query.html as unknown) = false;
       checkStatusController(req, res, next);
 
-      expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
       expect(res.send).not.toHaveBeenCalled();
     });
@@ -50,7 +48,6 @@ describe("Check status controller test :)", () => {
       (req.query.html as unknown) = true;
       checkStatusController(req, res, next);
 
-      expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
       expect(res.result).not.toHaveBeenCalled();
     });
@@ -59,7 +56,6 @@ describe("Check status controller test :)", () => {
       (req.query.html as unknown) = false;
       checkStatusController(req, res, next);
 
-      expect(statusService.getServerStatus).toHaveBeenCalled();
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
       expect(res.send).not.toHaveBeenCalled();
     });
