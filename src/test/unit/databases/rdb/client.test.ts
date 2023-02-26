@@ -12,26 +12,9 @@ describe("RDB test :)", () => {
     jest.clearAllMocks();
   });
 
-  describe("RDB initialize test", () => {
-    test("Should throw error when rdb not connect", async () => {
-      const error = new Error("Failure rdb connect");
-      jest.spyOn(RelationDatabaseClient.prototype as any, "connect").mockRejectedValue(error);
-
-      await expect(relationDatabaseClient.initialized(relationDatabaseConfig)).rejects.toThrowError(error);
-    });
-
-    test("Should return void when rdb connection is good", async () => {
-      jest.spyOn(RelationDatabaseClient.prototype as any, "connect").mockResolvedValue(true);
-
-      expect(async () => {
-        await relationDatabaseClient.initialized(relationDatabaseConfig);
-      }).not.toThrowError();
-    });
-  });
-
-  describe("RDB close test", () => {
-    test("Should throw error when rdb status is not normal", async () => {
-      const error = new Error("Failure rdb disconnect ");
+  describe("Method close", () => {
+    test("Should throw error when RDB status is not normal", async () => {
+      const error = new Error("Failure RDB disconnect");
       Object.defineProperty(relationDatabaseClient, "instance", {
         value: {
           destroy: jest.fn().mockRejectedValue(error),
@@ -41,7 +24,7 @@ describe("RDB test :)", () => {
       await expect(relationDatabaseClient.close()).rejects.toThrowError(error);
     });
 
-    test("Should return void when rdb status is normal", async () => {
+    test("Should RDB disconnect success", async () => {
       Object.defineProperty(relationDatabaseClient, "instance", {
         value: {
           destroy: jest.fn().mockImplementation(() => Promise.resolve()),
@@ -50,6 +33,23 @@ describe("RDB test :)", () => {
 
       expect(async () => {
         await relationDatabaseClient.close();
+      }).not.toThrowError();
+    });
+  });
+
+  describe("Method initialized", () => {
+    test("Should throw error when RDB not connect", async () => {
+      const error = new Error("Failure RDB connect");
+      jest.spyOn(RelationDatabaseClient.prototype as any, "connect").mockRejectedValue(error);
+
+      await expect(relationDatabaseClient.initialized(relationDatabaseConfig)).rejects.toThrowError(error);
+    });
+
+    test("Should RDB connect success", async () => {
+      jest.spyOn(RelationDatabaseClient.prototype as any, "connect").mockResolvedValue(true);
+
+      expect(async () => {
+        await relationDatabaseClient.initialized(relationDatabaseConfig);
       }).not.toThrowError();
     });
   });
