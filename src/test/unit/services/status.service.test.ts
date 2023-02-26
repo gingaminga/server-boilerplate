@@ -6,7 +6,7 @@ describe("Status service test :)", () => {
     jest.clearAllMocks();
   });
 
-  describe("Function getServerStatus()", () => {
+  describe("Method getServerStatus", () => {
     test("Should throw error when redis connection is bad", async () => {
       redisClient.get = jest.fn().mockRejectedValue("Error test");
 
@@ -35,7 +35,7 @@ describe("Status service test :)", () => {
     });
   });
 
-  describe("Function setServerStatus()", () => {
+  describe("Method setServerStatus", () => {
     test("Should return false when throw error", async () => {
       redisClient.set = jest.fn().mockRejectedValue("Error test");
 

@@ -15,7 +15,7 @@ describe("Util function test :)", () => {
     jest.clearAllMocks();
   });
 
-  describe("Function parseJSON()", () => {
+  describe("Function parseJSON", () => {
     test(`Should return null when parameter is normal string`, () => {
       const value = parseJSON("hihi");
 
