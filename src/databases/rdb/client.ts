@@ -20,6 +20,7 @@ export default class RelationDatabaseClient {
   /**
    * @description 연결하기
    * @param options connection option
+   * @returns true
    */
   private async connect(options: DataSourceOptions) {
     await createDatabase({
@@ -36,6 +37,7 @@ export default class RelationDatabaseClient {
 
   /**
    * @description datasource instance 가져오기
+   * @returns 연결된 orm 객체
    */
   getInstance() {
     return this.instance;

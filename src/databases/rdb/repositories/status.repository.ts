@@ -17,6 +17,7 @@ export default class StatusRepository extends BaseRepository<Status> {
   /**
    * @description 상태 추가 또는 업데이트하기
    * @param status 상태값
+   * @returns insert result
    */
   addOrModifyStatus(status: number) {
     return this.queryBuilder
@@ -29,6 +30,7 @@ export default class StatusRepository extends BaseRepository<Status> {
 
   /**
    * @description 상태 가져오기
+   * @returns 상태값
    */
   getStatus() {
     return this.queryBuilder.select("status as status").where("id = 1").getRawOne<StatusDTO>();
