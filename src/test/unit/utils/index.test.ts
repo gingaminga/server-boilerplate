@@ -16,19 +16,19 @@ describe("Util function test :)", () => {
   });
 
   describe("Function parseJSON", () => {
-    test(`Should return null when parsing is not good v1`, () => {
+    test(`Should return null when parameter is normal string`, () => {
       const value = parseJSON("hihi");
 
       expect(value).toEqual(null);
     });
 
-    test(`Should return null when parsing is not good v2`, () => {
-      const value = parseJSON("{data: 1}");
+    test(`Should return number 10 when parameter is string 10`, () => {
+      const value = parseJSON("10");
 
-      expect(value).toBe(null);
+      expect(value).toBe(10);
     });
 
-    test(`Should return ${JSON.stringify(data)}`, () => {
+    test(`Should return json when parameter is stringify object`, () => {
       const stringifyData = JSON.stringify(data);
       const value = parseJSON<IData>(stringifyData);
 

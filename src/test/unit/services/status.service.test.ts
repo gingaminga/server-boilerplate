@@ -8,7 +8,7 @@ describe("Status service test :)", () => {
     jest.clearAllMocks();
   });
 
-  describe("Function getServerStatus()", () => {
+  describe("Method getServerStatus", () => {
     let response: Status;
 
     beforeEach(() => {
@@ -42,7 +42,7 @@ describe("Status service test :)", () => {
     });
   });
 
-  describe("Function setServerStatus()", () => {
+  describe("Method setServerStatus", () => {
     const response = {} as InsertResult;
 
     test("Should throw error when RDB connection is bad", async () => {

@@ -14,7 +14,7 @@ const res = {
 const next = jest.fn();
 let err: unknown;
 
-describe("Validation error handler middleware test :)", () => {
+describe("Error handler middleware test :)", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
