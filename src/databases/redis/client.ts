@@ -20,16 +20,15 @@ export default class RedisClient {
    * @description 상태 확인하기
    */
   private async checkStatus() {
-    logger.info(`REDIS ${colors.blue("PING")}...`);
+    logger.info(`[REDIS] ${colors.blue("PING")}...`);
 
     const response = await this.instance.ping();
 
-    logger.info(`REDIS ${colors.blue(response)} :)`);
+    logger.info(`[REDIS] ${colors.blue(response)} :)`);
   }
 
   /**
    * @description 연결끊기
-   * @returns 성공(true)/실패(false) 여부
    */
   async close() {
     await this.instance.disconnect();
@@ -45,11 +44,11 @@ export default class RedisClient {
     const { host, port, password } = options;
 
     const connectionOption = {
+      password,
       socket: {
         host,
         port,
       },
-      password,
     };
 
     this.instance = createClient(connectionOption);
@@ -61,25 +60,29 @@ export default class RedisClient {
 
   /**
    * @description 값 삭제하기
-   * @param key
-   * @returns 삭제한 개수
+   * @param key 키
    */
   async del(key: string) {
     this.isConnect();
 
     const count = await this.instance.del(key);
-    logger.debug(`Redis deleted ${count} ${key} value`);
+    logger.debug(`[Redis] Deleted ${count} ${key} keys`);
   }
 
   /**
    * @description 값 가져오기
    * @param key 키
+   * @returns 값
    */
   async get(key: string) {
     this.isConnect();
 
     const value = await this.instance.get(key);
-    logger.warn(`[Redis] Get ${key} has no value`);
+    if (typeof value !== "string") {
+      logger.warn(`[Redis] Get ${key} key has no value`);
+
+      return null;
+    }
 
     return value;
   }
@@ -87,27 +90,30 @@ export default class RedisClient {
   /**
    * @description 해쉬값 삭제하기
    * @param key 키
-   * @param filed 필드
-   * @returns 삭제한 개수
+   * @param field 필드
    */
-  async hdel(key: string, filed: string) {
+  async hdel(key: string, field: string) {
     this.isConnect();
 
-    const count = await this.instance.hDel(key, filed);
-    logger.debug(`Redis deleted ${count} ${key}-${filed} hash value`);
+    const count = await this.instance.hDel(key, field);
+    logger.debug(`[Redis] Deleted hash ${count} ${key}-${field} keys-field`);
   }
 
   /**
    * @description 해시값 가져오기
    * @param key 키
-   * @param filed 필드
+   * @param field 필드
    * @returns 해시값
    */
-  async hget(key: string, filed: string) {
+  async hget(key: string, field: string) {
     this.isConnect();
 
-    const value = await this.instance.hGet(key, filed);
-    logger.warn(`[Redis] Get ${key}-${filed} has no value`);
+    const value = await this.instance.hGet(key, field);
+    if (typeof value !== "string") {
+      logger.warn(`[Redis] Get hash ${key}-${field} key-field has no value`);
+
+      return null;
+    }
 
     return value;
   }
@@ -115,15 +121,14 @@ export default class RedisClient {
   /**
    * @description 해시값 추가하기
    * @param key 키
-   * @param filed 필드
+   * @param field 필드
    * @param value 값
-   * @returns 추가된 개수
    */
-  async hset(key: string, filed: string, value: string) {
+  async hset(key: string, field: string, value: string) {
     this.isConnect();
 
-    const count = await this.instance.hSet(key, filed, value);
-    logger.debug(`Redis added ${count} ${key}-${filed} hash ${value} value`);
+    const count = await this.instance.hSet(key, field, value);
+    logger.debug(`[Redis] Added hash ${count} ${key}-${field} key-field`);
   }
 
   /**
@@ -151,25 +156,25 @@ export default class RedisClient {
    */
   private registerEvent() {
     this.instance.on("connect", () => {
-      logger.info(`Redis ${colors.yellow("connect")}`);
+      logger.info(`[Redis] ${colors.yellow("connect")}`);
     });
 
     this.instance.on("ready", () => {
-      logger.info(`Redis ${colors.green("ready")}`);
+      logger.info(`[Redis] ${colors.green("ready")}`);
 
       this.checkStatus();
     });
 
     this.instance.on("end", () => {
-      logger.info(`Redis ${colors.grey("end")}`);
+      logger.info(`[Redis] ${colors.grey("end")}`);
     });
 
     this.instance.on("error", (error) => {
-      logger.error(`Redis error \n %o`, error);
+      logger.error(`[Redis] error \n %o`, error);
     });
 
     this.instance.on("reconnecting", () => {
-      logger.info(`Redis ${colors.magenta("reconnecting")}`);
+      logger.info(`[Redis] ${colors.magenta("reconnecting")}`);
     });
   }
 
@@ -182,10 +187,6 @@ export default class RedisClient {
     this.isConnect();
 
     const result = await this.instance.set(key, value);
-    logger.debug(`Redis added ${key} value ${value} result ${result}`);
-
-    if (!result) {
-      throw new CError("Not connect redis.. :(");
-    }
+    logger.debug(`[Redis] Added ${result} result by ${key}`);
   }
 }
