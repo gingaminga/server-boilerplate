@@ -45,6 +45,9 @@ export default class RedisClient {
 
     const connectionOption = {
       password,
+      reconnectStrategy() {
+        return 3000;
+      },
       socket: {
         host,
         port,
