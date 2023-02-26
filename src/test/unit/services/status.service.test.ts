@@ -1,14 +1,14 @@
 import { statusService } from "@loaders/service.loader";
 
 describe("Status service test :)", () => {
-  describe("Function getServerStatus()", () => {
+  describe("Method getServerStatus", () => {
     test("Should get server status", () => {
       const serverStatus = statusService.getServerStatus();
       expect(serverStatus).toEqual(false);
     });
   });
 
-  describe("Function setServerStatus()", () => {
+  describe("Method setServerStatus", () => {
     test("Should set server status", () => {
       statusService.setServerStatus(true);
 
