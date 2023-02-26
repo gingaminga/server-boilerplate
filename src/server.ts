@@ -6,6 +6,11 @@ import fs from "fs";
 import http from "http";
 import https, { ServerOptions } from "https";
 
+/**
+ * @description 서버 객체 가져오기
+ * @param app express app
+ * @returns server 객체
+ */
 export const getServer = (app?: Express) => {
   const { HTTPS, SSL_CA_FILE_PATH, SSL_CERT_FILE_PATH, SSL_KEY_FILE_PATH, SSL_PFX_FILE_PATH, SSL_PFX_PASS, SSL_TYPE } =
     constants;
