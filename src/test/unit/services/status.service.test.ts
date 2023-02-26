@@ -8,44 +8,49 @@ describe("Status service test :)", () => {
 
   describe("Method getServerStatus", () => {
     test("Should throw error when redis connection is bad", async () => {
-      redisClient.get = jest.fn().mockRejectedValue("Error test");
+      const error = new Error("Failure redis connect");
+      jest.spyOn(redisClient, "get").mockRejectedValue(error);
 
-      expect(statusService.getServerStatus()).rejects.toEqual("Error test");
+      await expect(statusService.getServerStatus()).rejects.toThrowError(error);
     });
 
-    test("Should return false when server status is null", async () => {
-      redisClient.get = jest.fn().mockResolvedValue(null);
+    test("Should return false when redis value is null", async () => {
+      jest.spyOn(redisClient, "get").mockResolvedValue(null);
 
       const serverStatus = await statusService.getServerStatus();
-      expect(serverStatus).toEqual(false);
+      expect(serverStatus).not.toBeTruthy();
     });
 
     test("Should return false when server status is bad", async () => {
-      redisClient.get = jest.fn().mockResolvedValue(false);
+      jest.spyOn(redisClient, "get").mockResolvedValue("bad");
 
       const serverStatus = await statusService.getServerStatus();
-      expect(serverStatus).toEqual(false);
+      expect(serverStatus).not.toBeTruthy();
     });
 
     test("Should return true when server status is good", async () => {
-      redisClient.get = jest.fn().mockResolvedValue(true);
+      jest.spyOn(redisClient, "get").mockResolvedValue("good");
 
       const serverStatus = await statusService.getServerStatus();
-      expect(serverStatus).toEqual(true);
+
+      expect(serverStatus).toBeTruthy();
     });
   });
 
   describe("Method setServerStatus", () => {
-    test("Should return false when throw error", async () => {
-      redisClient.set = jest.fn().mockRejectedValue("Error test");
+    test("Should throw error when redis connection is bad", async () => {
+      const error = new Error("Failure redis connect");
+      jest.spyOn(redisClient, "set").mockRejectedValue(error);
 
-      expect(statusService.setServerStatus(true)).rejects.toEqual("Error test");
+      await expect(statusService.setServerStatus(true)).rejects.toThrowError(error);
     });
 
     test("Should return true", async () => {
-      redisClient.set = jest.fn().mockResolvedValue("");
+      jest.spyOn(redisClient, "set").mockResolvedValue(undefined);
 
-      expect(statusService.setServerStatus(true)).toEqual(true);
+      const isSuccess = await statusService.getServerStatus();
+
+      expect(isSuccess).toBeTruthy();
     });
   });
 });

@@ -1,5 +1,6 @@
 import app from "@/app";
 import { startRedis, stopRedis } from "@databases/index";
+import redisKey from "@databases/redis/key";
 import { redisClient } from "@loaders/database.loader";
 import { statusService } from "@loaders/service.loader";
 import { ERROR_MESSAGE } from "@utils/error";
@@ -10,6 +11,15 @@ import request from "supertest";
 const path = "/api/status";
 
 describe(`Get ${path} API test :)`, () => {
+  beforeAll(async () => {
+    await startRedis();
+  });
+
+  afterAll(async () => {
+    await redisClient.del(redisKey.SERVER_STATUS);
+    await stopRedis();
+  });
+
   describe(`HTTP status ${HTTP_STATUS_CODE.INVALID_VALUE}`, () => {
     test("Should html parameter value is not boolean of string type", async () => {
       const { body, status } = await request(app).get(path).query({
@@ -24,8 +34,8 @@ describe(`Get ${path} API test :)`, () => {
 
   describe(`HTTP status ${HTTP_STATUS_CODE.OK}`, () => {
     describe("Server status is bad", () => {
-      beforeAll(() => {
-        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
+      beforeAll(async () => {
+        await statusService.setServerStatus(false);
       });
 
       test("Should no parameter", async () => {
@@ -58,14 +68,7 @@ describe(`Get ${path} API test :)`, () => {
 
     describe("Server status is good", () => {
       beforeAll(async () => {
-        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
-        await startRedis();
-      });
-
-      afterAll(async () => {
-        await redisClient.del("serverStatus");
-
-        await stopRedis();
+        await statusService.setServerStatus(true);
       });
 
       test("Should no parameter", async () => {
