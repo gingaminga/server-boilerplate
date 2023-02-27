@@ -17,7 +17,7 @@
 
 ```bash
 # 로컬로 다운받기
-$ git clone -b redis --single-branch https://github.com/gingaminga/server-bolierplate.git
+$ git clone -b express+redis --single-branch https://github.com/gingaminga/server-bolierplate.git
 
 # 다운받은 경로로 이동
 $ cd server-bolierplate
@@ -55,7 +55,7 @@ $ npm run eslint:fix
 $ npm run prettier:write
 ```
 
-> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/redis/package.json)의 `script`를 확인하세요. :)
+> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/express+redis/package.json)의 `script`를 확인하세요. :)
 
 ### .env 설정
 
@@ -67,7 +67,7 @@ $ npm run prettier:write
 $ vi .env
 ```
 
-> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/redis/.env.sample) 파일을 확인하세요 :)
+> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/express+redis/.env.sample) 파일을 확인하세요 :)
 
 만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
 
@@ -119,10 +119,10 @@ $ git remote add origin [자신의 레포지토리 주소]
 $ git remote add boilerplate https://github.com/gingaminga/server-bolierplate.git
 
 # boilerplate repository 반영사항 가져오기
-$ git fetch boilerplate redis
+$ git fetch boilerplate express+redis
 
 # 반영사항을 현재 (자신의) 로컬 브랜치에 합치기
-$ git rebase boilerplate/redis
+$ git rebase boilerplate/express+redis
 # or
-$ git merge boilerplate/redis
+$ git merge boilerplate/express+redis
 ```
