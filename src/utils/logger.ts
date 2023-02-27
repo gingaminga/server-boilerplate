@@ -5,7 +5,7 @@ import winston from "winston";
 import WinstonDailyLog from "winston-daily-rotate-file";
 
 const { combine, label, printf, splat, timestamp } = winston.format;
-const logDir = constants.LOG_PATH || "../../logs";
+const logDir = constants.LOG.PATH || "../../logs";
 
 const enum Level {
   ERROR = "error",
@@ -73,8 +73,8 @@ export default winston.createLogger({
       dirname: path.resolve(__dirname, logDir),
       filename: `${constants.PROJECT_NAME}_%DATE%.log`,
       level: constants.NODE_ENV === "production" ? Level.INFO : Level.DEBUG,
-      maxFiles: constants.LOG_MAX_FILES,
-      maxSize: constants.LOG_MAX_SIZE,
+      maxFiles: constants.LOG.MAX_FILES,
+      maxSize: constants.LOG.MAX_SIZE,
       zippedArchive: constants.NODE_ENV !== "development",
     }),
   ],
