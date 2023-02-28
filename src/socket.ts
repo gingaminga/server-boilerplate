@@ -1,19 +1,30 @@
 import disconnectEventController from "@controllers/socket/disconnect-event.controller";
 import statusEventController from "@controllers/socket/status-event.controller";
 import socketLoggingMiddleware from "@middlewares/socket-logging.middleware";
+import socketValidatorMiddleware from "@middlewares/socket-validator.middleware";
 import logger from "@utils/logger";
 import { makeTextSocket } from "@utils/index";
 import { IncomingMessage, Server as httpServer, ServerResponse } from "http";
 import { Server as httpsServer } from "https";
-import { Server } from "socket.io";
+import { Server, Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 
 /**
  * @description socket io 미들웨어 등록하기
  * @param io socket io 객체
  */
-const registerMiddlewares = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
+const registerIOMiddlewares = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
   io.use(socketLoggingMiddleware);
+};
+
+/**
+ * @description socket 미들웨어 등록하기
+ * @param socket socket 객체
+ */
+const registerSocketMiddlewares = (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
+  socket.use((packet, next) => {
+    socketValidatorMiddleware(socket, packet, next);
+  });
 };
 
 /**
@@ -23,6 +34,8 @@ const registerMiddlewares = (io: Server<DefaultEventsMap, DefaultEventsMap, Defa
 const registerHandlers = (io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
   io.on("connection", (socket) => {
     logger.info(makeTextSocket(socket.id, "Hi :D"));
+
+    registerSocketMiddlewares(socket);
 
     socket.on("disconnect", (reason) => {
       disconnectEventController(socket, reason);
@@ -46,7 +59,7 @@ export const loadSocketServer = (
 ) => {
   const io = new Server(server);
 
-  registerMiddlewares(io);
+  registerIOMiddlewares(io);
   registerHandlers(io);
 
   return io;
