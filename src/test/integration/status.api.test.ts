@@ -23,7 +23,7 @@ describe(`Get ${path} API test :)`, () => {
   describe(`HTTP status ${HTTP_STATUS_CODE.OK}`, () => {
     describe("Server status is bad", () => {
       beforeAll(() => {
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+        statusService.setServerStatus(false);
       });
 
       test("Should no parameter", async () => {
@@ -56,7 +56,7 @@ describe(`Get ${path} API test :)`, () => {
 
     describe("Server status is good", () => {
       beforeAll(() => {
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+        statusService.setServerStatus(true);
       });
 
       test("Should no parameter", async () => {
