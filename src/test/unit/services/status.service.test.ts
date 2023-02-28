@@ -48,7 +48,7 @@ describe("Status service test :)", () => {
     test("Should return true", async () => {
       jest.spyOn(redisClient, "set").mockResolvedValue(undefined);
 
-      const isSuccess = await statusService.getServerStatus();
+      const isSuccess = await statusService.setServerStatus(true);
 
       expect(isSuccess).toBeTruthy();
     });
