@@ -1,7 +1,15 @@
-import { redisClient } from "@loaders/database.loader";
-import { statusService } from "@loaders/service.loader";
+import RedisClient from "@databases/redis/client";
+import StatusService from "@services/status.service";
 
 describe("Status service test :)", () => {
+  let statusService: StatusService;
+  let redisClient: RedisClient;
+
+  beforeEach(() => {
+    redisClient = new RedisClient();
+    statusService = new StatusService(redisClient);
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
