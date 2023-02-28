@@ -1,4 +1,4 @@
-# Server boilerplate (with Redis)
+# Server boilerplate (with Redis + TypeORM)
 
 ## ❓왜 만들게 되었나?
 
@@ -9,7 +9,9 @@
 
 ## ⚒기술 스택
 
-<img src="https://img.shields.io/badge/Typescript-blue?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Express-green?style=flat&logo=express&logoColor=white"/> <img src="https://img.shields.io/badge/Nodemon-yellow?style=flat&logo=nodemon&logoColor=white"/> <img src="https://img.shields.io/badge/Redis-red?style=flat&logo=redis&logoColor=white"/> <img src="https://img.shields.io/badge/Jest-orange?style=flat&logo=jest&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-purple?style=flat&logo=prettier&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-orange?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/NPM-yellow?style=flat&logo=npm&logoColor=white"/>
+<img src="https://img.shields.io/badge/Typescript-blue?style=flat&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Express-green?style=flat&logo=express&logoColor=white"/> <img src="https://img.shields.io/badge/Nodemon-yellow?style=flat&logo=nodemon&logoColor=white"/> <img src="https://img.shields.io/badge/Redis-red?style=flat&logo=redis&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-blue?style=flat&logo=mysql&logoColor=white"/> <img src="https://img.shields.io/badge/Jest-orange?style=flat&logo=jest&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-purple?style=flat&logo=prettier&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-orange?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/NPM-yellow?style=flat&logo=npm&logoColor=white"/>
+
+> MySQL을 기준으로 만들었어요. :)
 
 ## 😯어떻게 쓰나요?
 
@@ -17,7 +19,7 @@
 
 ```bash
 # 로컬로 다운받기
-$ git clone -b express+redis --single-branch https://github.com/gingaminga/server-bolierplate.git
+$ git clone -b express+redis+orm --single-branch https://github.com/gingaminga/server-bolierplate.git
 
 # 다운받은 경로로 이동
 $ cd server-bolierplate
@@ -55,7 +57,7 @@ $ npm run eslint:fix
 $ npm run prettier:write
 ```
 
-> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/express+redis/package.json)의 `script`를 확인하세요. :)
+> 자세한 내용은 [package.json](https://github.com/gingaminga/server-bolierplate/blob/express+redis+orm/package.json)의 `script`를 확인하세요. :)
 
 ### .env 설정
 
@@ -67,7 +69,7 @@ $ npm run prettier:write
 $ vi .env
 ```
 
-> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/express+redis/.env.sample) 파일을 확인하세요 :)
+> .env 구성에 관한 설명은 [.env.sample](https://github.com/gingaminga/server-bolierplate/blob/express+redis+orm/.env.sample) 파일을 확인하세요 :)
 
 만약 개발환경/테스트환경/배포환경에 따라 다르게 하고 싶다면 `.env` 파일 대신 `.env.development`, `.env.test`, `.env.production`로 사용하시면 됩니다.
 
@@ -81,6 +83,8 @@ $ vi .env
 - `src` : 실제 서비스에 대한 코드가 들어있는 폴더
   - `controllers` : 컨트롤러로 구성된 폴더
   - `databases` : 데이터베이스 관련 로직이 있는 폴더
+  - `databases` : DB 관련 폴더
+  - `dto` : 도메인 모델 정의 폴더
   - `loaders` : 서비스의 초기 설정을 구성하는 로직이 들어있는 폴더
   - `middlewares` : 공통 미들웨어 로직이 들어있는 폴더
   - `routes` : 실제 API와 관련된 로직이 들어있는 폴더
@@ -119,10 +123,10 @@ $ git remote add origin [자신의 레포지토리 주소]
 $ git remote add boilerplate https://github.com/gingaminga/server-bolierplate.git
 
 # boilerplate repository 반영사항 가져오기
-$ git fetch boilerplate express+redis
+$ git fetch boilerplate express+redis+orm
 
 # 반영사항을 현재 (자신의) 로컬 브랜치에 합치기
-$ git rebase boilerplate/express+redis
+$ git rebase boilerplate/express+redis+orm
 # or
-$ git merge boilerplate/express+redis
+$ git merge boilerplate/express+redis+orm
 ```

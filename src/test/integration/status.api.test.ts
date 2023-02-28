@@ -1,5 +1,5 @@
 import app from "@/app";
-import { startRedis, stopRedis } from "@databases/index";
+import { startRedis, startRelationDatabase, stopRedis, stopRelationDatabase } from "@databases/index";
 import redisKey from "@databases/redis/key";
 import { redisClient } from "@loaders/database.loader";
 import { statusService } from "@loaders/service.loader";
@@ -13,11 +13,13 @@ const path = "/api/status";
 describe(`Get ${path} API test :)`, () => {
   beforeAll(async () => {
     await startRedis();
+    await startRelationDatabase();
   });
 
   afterAll(async () => {
     await redisClient.del(redisKey.SERVER_STATUS);
     await stopRedis();
+    await stopRelationDatabase();
   });
 
   describe(`HTTP status ${HTTP_STATUS_CODE.INVALID_VALUE}`, () => {
