@@ -1,7 +1,7 @@
-import disconnectEventController from "@controllers/socket/disconnect-event.controller";
-import statusEventController from "@controllers/socket/status-event.controller";
-import socketLoggingMiddleware from "@middlewares/socket-logging.middleware";
-import socketValidatorMiddleware from "@middlewares/socket-validator.middleware";
+import disconnectEventController from "@controllers/disconnect.controller";
+import statusEventController from "@controllers/status.controller";
+import socketLoggingMiddleware from "@middlewares/logging.socket.middleware";
+import socketValidatorMiddleware from "@middlewares/validator.socket.middleware";
 import logger from "@utils/logger";
 import { makeTextSocket } from "@utils/index";
 import { IncomingMessage, Server as httpServer, ServerResponse } from "http";

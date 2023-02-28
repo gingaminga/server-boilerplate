@@ -1,6 +1,6 @@
 import logger from "@utils/logger";
 import { parseJSON } from "@utils/index";
-import { checkSocketSchema } from "@validators/socket-format.validator";
+import { checkSocketSchema } from "@validators/format.socket.validator";
 import { Event, Socket } from "socket.io";
 
 /**
