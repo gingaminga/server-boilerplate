@@ -9,6 +9,14 @@ import request from "supertest";
 const path = "/api/status";
 
 describe(`Get ${path} API test :)`, () => {
+  beforeAll(async () => {
+    await startRelationDatabase();
+  });
+
+  afterAll(async () => {
+    await stopRelationDatabase();
+  });
+
   describe(`HTTP status ${HTTP_STATUS_CODE.INVALID_VALUE}`, () => {
     test("Should html parameter value is not boolean of string type", async () => {
       const { body, status } = await request(app).get(path).query({
@@ -23,8 +31,8 @@ describe(`Get ${path} API test :)`, () => {
 
   describe(`HTTP status ${HTTP_STATUS_CODE.OK}`, () => {
     describe("Server status is bad", () => {
-      beforeAll(() => {
-        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
+      beforeAll(async () => {
+        await statusService.setServerStatus(false);
       });
 
       test("Should no parameter", async () => {
@@ -55,46 +63,36 @@ describe(`Get ${path} API test :)`, () => {
       });
     });
 
-    describe("If server status is good :)", () => {
+    describe("Server status is good", () => {
       beforeAll(async () => {
-        await startRelationDatabase();
+        await statusService.setServerStatus(true);
       });
 
-      afterAll(async () => {
-        await stopRelationDatabase();
+      test("Should no parameter", async () => {
+        const { body, status } = await request(app).get(path);
+
+        expect(status).toBe(HTTP_STATUS_CODE.OK);
+        expect(body.data).toEqual(RESPONSE_MESSAGE.GOOD);
+        expect(body.status).toEqual(RESPONSE_STATUS.SUCCESS);
       });
 
-      describe("Server status is good", () => {
-        beforeAll(() => {
-          jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
+      test("Should html parameter value is false", async () => {
+        const { status, body } = await request(app).get(path).query({
+          html: false,
         });
 
-        test("Should no parameter", async () => {
-          const { body, status } = await request(app).get(path);
+        expect(status).toBe(HTTP_STATUS_CODE.OK);
+        expect(body.data).toEqual(RESPONSE_MESSAGE.GOOD);
+        expect(body.status).toEqual(RESPONSE_STATUS.SUCCESS);
+      });
 
-          expect(status).toBe(HTTP_STATUS_CODE.OK);
-          expect(body.data).toEqual(RESPONSE_MESSAGE.GOOD);
-          expect(body.status).toEqual(RESPONSE_STATUS.SUCCESS);
+      test("Should html parameter value is true", async () => {
+        const { status, text } = await request(app).get(path).query({
+          html: true,
         });
 
-        test("Should html parameter value is false", async () => {
-          const { status, body } = await request(app).get(path).query({
-            html: false,
-          });
-
-          expect(status).toBe(HTTP_STATUS_CODE.OK);
-          expect(body.data).toEqual(RESPONSE_MESSAGE.GOOD);
-          expect(body.status).toEqual(RESPONSE_STATUS.SUCCESS);
-        });
-
-        test("Should html parameter value is true", async () => {
-          const { status, text } = await request(app).get(path).query({
-            html: true,
-          });
-
-          expect(status).toBe(HTTP_STATUS_CODE.OK);
-          expect(text).toEqual(RESPONSE_MESSAGE.GOOD);
-        });
+        expect(status).toBe(HTTP_STATUS_CODE.OK);
+        expect(text).toEqual(RESPONSE_MESSAGE.GOOD);
       });
     });
   });
