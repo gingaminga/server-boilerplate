@@ -81,6 +81,7 @@ $ vi .env
 - `src` : 실제 서비스에 대한 코드가 들어있는 폴더
   - `controllers` : 컨트롤러로 구성된 폴더
   - `databases` : 데이터베이스 관련 로직이 있는 폴더
+  - `dto` : DTO를 관리하는 폴더 (class로 구성)
   - `loaders` : 서비스의 초기 설정을 구성하는 로직이 들어있는 폴더
   - `middlewares` : 공통 미들웨어 로직이 들어있는 폴더
   - `routes` : 실제 API와 관련된 로직이 들어있는 폴더
