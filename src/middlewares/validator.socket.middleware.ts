@@ -1,6 +1,6 @@
 import logger from "@utils/logger";
 import { parseJSON } from "@utils/index";
-import { checkSocketSchema } from "@validators/format.socket.validator";
+import { checkSocketSchema, checkStatusEventDataSchema } from "@validators/format.socket.validator";
 import { Event, Socket } from "socket.io";
 
 /**
@@ -9,16 +9,20 @@ import { Event, Socket } from "socket.io";
  * @param next next 함수
  */
 export default async (socket: Socket, packet: Event, next: (err?: Error) => void) => {
-  const [event, data] = packet;
+  const [event, message] = packet;
 
   try {
-    const parseData = parseJSON<object>(data);
+    const parseData = parseJSON<object>(message);
+    let { data } = await checkSocketSchema.validateAsync(parseData);
 
-    const value = await checkSocketSchema.validateAsync(parseData);
+    // 이벤트별 validate 검사하여 타입 보장
+    if (event === "status") {
+      data = await checkStatusEventDataSchema.validateAsync(data);
+    }
 
     // 실제 컨트롤러에서 validator 처리된 값을 쓰기 위해 어쩔 수 없이 덮어 써야함
     // eslint-disable-next-line no-param-reassign
-    packet[1] = value;
+    packet[1] = data;
 
     next();
   } catch (error) {

@@ -1,5 +1,6 @@
 import disconnectEventController from "@controllers/disconnect.controller";
 import statusEventController from "@controllers/status.controller";
+import { TStatusEventData } from "@customTypes/socket";
 import socketLoggingMiddleware from "@middlewares/logging.socket.middleware";
 import socketValidatorMiddleware from "@middlewares/validator.socket.middleware";
 import logger from "@utils/logger";
@@ -41,7 +42,7 @@ const registerHandlers = (io: Server<DefaultEventsMap, DefaultEventsMap, Default
       disconnectEventController(socket, reason);
     });
 
-    socket.on("status", (data) => {
+    socket.on("status", (data: TStatusEventData) => {
       statusEventController(socket, data);
     });
   });

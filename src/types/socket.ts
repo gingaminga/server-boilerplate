@@ -4,3 +4,5 @@
 export interface ISocketDataFormat<T> {
   data: T;
 }
+
+export type TStatusEventData = "good" | "bad";
