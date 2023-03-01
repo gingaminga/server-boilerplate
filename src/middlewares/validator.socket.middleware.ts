@@ -1,6 +1,6 @@
 import logger from "@utils/logger";
 import { parseJSON } from "@utils/index";
-import { checkSocketSchema, checkStatusEventDataSchema } from "@validators/format.socket.validator";
+import { checkCommonSocketDataSchema, checkStatusEventDataSchema } from "@validators/format.socket.validator";
 import { Event, Socket } from "socket.io";
 
 /**
@@ -13,7 +13,7 @@ export default async (socket: Socket, packet: Event, next: (err?: Error) => void
 
   try {
     const parseData = parseJSON<object>(message);
-    let { data } = await checkSocketSchema.validateAsync(parseData);
+    let { data } = await checkCommonSocketDataSchema.validateAsync(parseData);
 
     // 이벤트별 validate 검사하여 타입 보장
     if (event === "status") {
