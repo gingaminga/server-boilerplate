@@ -34,6 +34,7 @@
       "@controllers/*": ["src/controllers/*"],
       "@customTypes/*": ["src/types/*"],
       "@databases/*": ["src/databases/*"],
+      "@dto/*": ["src/dto/*"],
       "@loaders/*": ["src/loaders/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@routes/*": ["src/routes/*"],
