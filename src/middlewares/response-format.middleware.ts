@@ -1,19 +1,8 @@
 import CError from "@utils/error";
 import HTTP_STATUS_CODE from "@utils/http-status-code";
+import { getResponseFormat } from "@utils/index";
 import logger from "@utils/logger";
-import { RESPONSE_STATUS } from "@utils/response";
 import { NextFunction, Request, Response } from "express";
-
-/**
- * @description 응답 포맷
- * @param status 성공 실패 여부
- * @param data 전달할 데이터
- * @returns 전달할 JSON 객체
- */
-const getResponseFormat = (status: boolean, data: any) => ({
-  data,
-  status: status ? RESPONSE_STATUS.SUCCESS : RESPONSE_STATUS.FAILURE,
-});
 
 /**
  * @description 커스텀 응답 함수를 정의하는 미들웨어
