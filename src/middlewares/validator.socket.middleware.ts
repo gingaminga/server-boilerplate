@@ -1,4 +1,3 @@
-import logger from "@utils/logger";
 import { parseJSON } from "@utils/index";
 import { checkCommonSocketDataSchema, checkStatusEventDataSchema } from "@validators/format.socket.validator";
 import { Event, Socket } from "socket.io";
@@ -26,8 +25,8 @@ export default async (socket: Socket, packet: Event, next: (err?: Error) => void
 
     next();
   } catch (error) {
-    logger.error(error);
-
-    socket.emit("error", error);
+    if (error instanceof Error) {
+      next(error);
+    }
   }
 };

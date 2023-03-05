@@ -46,6 +46,12 @@ const registerHandlers = (io: Server<DefaultEventsMap, DefaultEventsMap, Default
       statusEventController(socket, data);
     });
   });
+
+  io.on("error", (error, socket) => {
+    logger.error(error);
+
+    socket.emit("error", error);
+  });
 };
 
 /**
