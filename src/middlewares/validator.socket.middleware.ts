@@ -11,7 +11,7 @@ export default async (socket: Socket, packet: Event, next: (err?: Error) => void
   const [event, message] = packet;
 
   try {
-    const parseData = parseJSON<object>(message);
+    const parseData = parseJSON<object>(message) || message;
     let { data } = await checkCommonSocketDataSchema.validateAsync(parseData);
 
     // 이벤트별 validate 검사하여 타입 보장
