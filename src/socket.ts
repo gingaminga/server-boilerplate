@@ -1,4 +1,5 @@
 import disconnectEventController from "@controllers/disconnect.controller";
+import errorEventController from "@controllers/error.controller";
 import statusEventController from "@controllers/status.controller";
 import { TStatusEventData } from "@customTypes/socket";
 import socketLoggingMiddleware from "@middlewares/logging.socket.middleware";
@@ -45,12 +46,10 @@ const registerHandlers = (io: Server<DefaultEventsMap, DefaultEventsMap, Default
     socket.on("status", (data: TStatusEventData) => {
       statusEventController(socket, data);
     });
-  });
 
-  io.on("error", (error, socket) => {
-    logger.error(error);
-
-    socket.emit("error", error);
+    socket.on("error", (error) => {
+      errorEventController(socket, error);
+    });
   });
 };
 
