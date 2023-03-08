@@ -6,7 +6,7 @@ interface ICheckStatusSchema {
   html: boolean;
 }
 
-const checkStatusSchema = joi.object<ICheckStatusSchema>().keys({
+export const checkStatusSchema = joi.object<ICheckStatusSchema>().keys({
   html: joi.boolean(),
 });
 
