@@ -1,4 +1,12 @@
 export default {
+  DATABASE: {
+    HOST: process.env.DATABASE_HOST || "127.0.0.1",
+    PASSWORD: process.env.DATABASE_PASSWORD || "",
+    PORT: Number(process.env.DATABASE_PORT || 3306),
+    SCHEMA: process.env.DATABASE_SCHEMA || "test",
+    TYPE: process.env.DATABASE_TYPE || "mysql",
+    USER_NAME: process.env.DATABASE_USER_NAME || "root",
+  },
   HTTPS: process.env.HTTPS === "true",
   LOG: {
     MAX_FILES: Number(process.env.LOG_MAX_FILES || 3),
@@ -8,6 +16,11 @@ export default {
   NODE_ENV: process.env.NODE_ENV || "development",
   PORT: Number(process.env.PORT || 3001), // 서버 포트
   PROJECT_NAME: process.env.PROJECT_NAME || "Sample Project Name",
+  REDIS: {
+    HOST: process.env.REDIS_HOST || "127.0.0.1",
+    PASSWORD: process.env.REDIS_PASS || "",
+    PORT: Number(process.env.REDIS_PORT || 6379),
+  },
   SSL: {
     CERT: {
       CA_FILE_PATH: process.env.HTTPS === "true" ? process.env.SSL_CA_FILE_PATH : "", // CA 파일

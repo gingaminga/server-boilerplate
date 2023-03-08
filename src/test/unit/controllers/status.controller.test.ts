@@ -20,11 +20,11 @@ describe("Status controller test :)", () => {
 
   describe("Server status is bad", () => {
     beforeAll(() => {
-      jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
     });
 
-    test("Should emit incorrect with parameter is good", () => {
-      statusController(socket, isGood);
+    test("Should emit incorrect with parameter is good", async () => {
+      await statusController(socket, isGood);
 
       expect(socket.emit).toBeCalledWith(
         "status",
@@ -34,9 +34,9 @@ describe("Status controller test :)", () => {
       );
     });
 
-    test("Should emit correct with parameter is bad", () => {
+    test("Should emit correct with parameter is bad", async () => {
       isGood = "bad";
-      statusController(socket, isGood);
+      await statusController(socket, isGood);
 
       expect(socket.emit).toBeCalledWith(
         "status",
@@ -49,11 +49,11 @@ describe("Status controller test :)", () => {
 
   describe("Server status is good", () => {
     beforeAll(() => {
-      jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+      jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
     });
 
-    test("Should emit correct with parameter is good", () => {
-      statusController(socket, isGood);
+    test("Should emit correct with parameter is good", async () => {
+      await statusController(socket, isGood);
 
       expect(socket.emit).toBeCalledWith(
         "status",
@@ -63,9 +63,9 @@ describe("Status controller test :)", () => {
       );
     });
 
-    test("Should emit incorrect with parameter is bad", () => {
+    test("Should emit incorrect with parameter is bad", async () => {
       isGood = "bad";
-      statusController(socket, isGood);
+      await statusController(socket, isGood);
 
       expect(socket.emit).toBeCalledWith(
         "status",
