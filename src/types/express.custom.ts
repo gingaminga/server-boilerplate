@@ -12,3 +12,10 @@ export type RequestDTOHandler<T> = (
   },
   next: NextFunction,
 ) => ReturnType<RequestHandler>;
+
+/**
+ * @description Response + DTO 커스텀
+ */
+export type ResponseDTO<T> = Response<any, Record<string, any>> & {
+  locals: Record<string, any> & { dto: T };
+};
