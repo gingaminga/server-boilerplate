@@ -1,10 +1,10 @@
 import { checkStatusController } from "@controllers/status.controller";
-import { checkStatusSchema } from "@validators/status.validator";
+import { checkStatusValidator } from "@validators/check-status.validator";
 import { Router } from "express";
 import asyncify from "express-asyncify";
 
 const router = asyncify(Router());
 
-router.get("/status", checkStatusSchema, checkStatusController);
+router.get("/status", checkStatusValidator, checkStatusController);
 
 export default router;

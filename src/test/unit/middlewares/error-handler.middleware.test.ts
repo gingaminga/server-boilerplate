@@ -1,11 +1,11 @@
 import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
 import HTTP_STATUS_CODE from "@utils/http-status-code";
 import { ERROR_MESSAGE } from "@utils/error";
-import { isCelebrateError } from "celebrate";
+import { isError } from "joi";
 import { Request, Response } from "express";
 
-jest.mock("celebrate");
-const mockedIsCelebrateError = jest.mocked(isCelebrateError);
+jest.mock("joi");
+const mockedIsJoiError = jest.mocked(isError);
 
 const req = {} as Request;
 const res = {
@@ -20,7 +20,7 @@ describe("Error handler middleware test :)", () => {
   });
 
   test(`Should call res.error() with a ${HTTP_STATUS_CODE.INVALID_VALUE} error`, () => {
-    mockedIsCelebrateError.mockReturnValue(true);
+    mockedIsJoiError.mockReturnValue(true);
     errorHandlerMiddleware(err, req, res, next);
 
     expect(res.error).toBeCalledTimes(1);
@@ -33,7 +33,7 @@ describe("Error handler middleware test :)", () => {
   });
 
   test(`Should call res.error() with a ${HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR} error`, () => {
-    mockedIsCelebrateError.mockReturnValue(false);
+    mockedIsJoiError.mockReturnValue(false);
     errorHandlerMiddleware(err, req, res, next);
 
     expect(res.error).toBeCalledTimes(1);
