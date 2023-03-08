@@ -1,4 +1,4 @@
-import { RequestDTOHandler } from "@customTypes/index";
+import { RequestDTOHandler } from "@customTypes/express.custom";
 import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
 import { statusService } from "@loaders/service.loader";
 import { RESPONSE_MESSAGE } from "@utils/response";

@@ -1,4 +1,4 @@
-import { RequestDTOHandler } from "@customTypes/index";
+import { RequestDTOHandler } from "@customTypes/express.custom";
 import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
 import joi from "joi";
 
