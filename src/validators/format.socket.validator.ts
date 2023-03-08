@@ -1,8 +1,8 @@
 import { ISocketDataFormat } from "@customTypes/socket";
-import { Joi } from "celebrate";
+import joi from "joi";
 
-export const checkCommonSocketDataSchema = Joi.object<ISocketDataFormat<unknown>>().keys({
-  data: Joi.any().required(),
+export const checkCommonSocketDataSchema = joi.object<ISocketDataFormat<unknown>>().keys({
+  data: joi.any().required(),
 });
 
-export const checkStatusEventDataSchema = Joi.string().valid("good", "bad");
+export const checkStatusEventDataSchema = joi.string().valid("good", "bad");
