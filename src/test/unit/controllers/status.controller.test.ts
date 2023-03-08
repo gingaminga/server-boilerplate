@@ -1,7 +1,9 @@
 import { checkStatusController } from "@controllers/status.controller";
+import { ResponseDTO } from "@customTypes/express.custom";
+import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
 import { statusService } from "@loaders/service.loader";
 import { RESPONSE_MESSAGE } from "@utils/response";
-import { Request, Response } from "express";
+import { Request } from "express";
 
 const req = {
   query: {},
@@ -9,7 +11,12 @@ const req = {
 const res = {
   result: jest.fn(),
   send: jest.fn(),
-} as unknown as Response;
+  locals: {
+    dto: {
+      isHTML: true,
+    },
+  },
+} as unknown as ResponseDTO<CheckStatusRequestParamDTO>;
 const next = jest.fn();
 
 describe("Check status controller test :)", () => {
@@ -23,7 +30,7 @@ describe("Check status controller test :)", () => {
     });
 
     test("Should response with bad message in html", async () => {
-      (req.query.html as unknown) = true;
+      (res.locals.dto.isHTML as unknown) = true;
       await checkStatusController(req, res, next);
 
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
@@ -31,7 +38,7 @@ describe("Check status controller test :)", () => {
     });
 
     test("Should response with bad message in json", async () => {
-      (req.query.html as unknown) = false;
+      (res.locals.dto.isHTML as unknown) = false;
       await checkStatusController(req, res, next);
 
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.BAD);
@@ -45,7 +52,7 @@ describe("Check status controller test :)", () => {
     });
 
     test("Should response with good message in html", async () => {
-      (req.query.html as unknown) = true;
+      (res.locals.dto.isHTML as unknown) = true;
       await checkStatusController(req, res, next);
 
       expect(res.send).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
@@ -53,7 +60,7 @@ describe("Check status controller test :)", () => {
     });
 
     test("Should response with good message in json", async () => {
-      (req.query.html as unknown) = false;
+      (res.locals.dto.isHTML as unknown) = false;
       await checkStatusController(req, res, next);
 
       expect(res.result).toHaveBeenCalledWith(RESPONSE_MESSAGE.GOOD);
