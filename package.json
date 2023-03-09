@@ -49,6 +49,7 @@
   "dependencies": {
     "ansi-colors": "^4.1.3",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-asyncify": "^1.1.0",
