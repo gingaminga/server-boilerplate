@@ -6,7 +6,7 @@ import { NextFunction, Request, Response } from "express";
 /**
  * @description error handler 미들웨어
  */
-export default (error: unknown, req: Request, res: Response, next: NextFunction) => {
+export default (error: unknown, _req: Request, res: Response, _: NextFunction) => {
   if (isError(error)) {
     // validation 에러 처리
     const customError = new CError(ERROR_MESSAGE.INVALID_VALUE, HTTP_STATUS_CODE.INVALID_VALUE);
