@@ -1,12 +1,10 @@
-import RedisClient from "@databases/redis/client";
 import redisKey from "@databases/redis/key";
-import { Inject, Service } from "typedi";
+import { redisClient } from "@loaders/database.loader";
+import { Service } from "typedi";
 
 @Service()
 export default class StatusService {
-  constructor(@Inject() private redisClient: RedisClient) {
-    /* empty */
-  }
+  private redisClient = redisClient;
 
   async getServerStatus() {
     const status = await this.redisClient.get(redisKey.SERVER_STATUS);
