@@ -2,7 +2,6 @@ import CError from "@utils/error";
 import logger from "@utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
-import { Service } from "typedi";
 
 interface IConnectionOption {
   host: string;
@@ -10,7 +9,6 @@ interface IConnectionOption {
   port: number;
 }
 
-@Service()
 export default class RedisClient {
   private connectStatus = false;
 

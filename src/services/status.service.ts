@@ -1,11 +1,13 @@
 import StatusRepository from "@databases/rdb/repositories/status.repository";
-import RedisClient from "@databases/redis/client";
 import redisKey from "@databases/redis/key";
+import { redisClient } from "@loaders/database.loader";
 import { Inject, Service } from "typedi";
 
 @Service()
 export default class StatusService {
-  constructor(@Inject() private statusRepository: StatusRepository, @Inject() private redisClient: RedisClient) {
+  private redisClient = redisClient;
+
+  constructor(@Inject() private statusRepository: StatusRepository) {
     /* empty */
   }
 

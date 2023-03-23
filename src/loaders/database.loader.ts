@@ -2,7 +2,6 @@
 
 import RelationDatabaseClient from "@databases/rdb/client";
 import RedisClient from "@databases/redis/client";
-import { Container } from "typedi";
 
+export const redisClient = new RedisClient();
 export const relationDatabaseClient = new RelationDatabaseClient();
-export const redisClient = Container.get(RedisClient);
