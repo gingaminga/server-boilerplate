@@ -1,4 +1,4 @@
-import { RESPONSE_STATUS } from "@utils/response";
+import { RESPONSE_STATUS } from "@/utils/response";
 
 /**
  * @description 응답 포맷

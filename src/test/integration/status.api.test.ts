@@ -1,8 +1,8 @@
 import app from "@/app";
-import { statusService } from "@loaders/service.loader";
-import { ERROR_MESSAGE } from "@utils/error";
-import HTTP_STATUS_CODE from "@utils/http-status-code";
-import { RESPONSE_MESSAGE, RESPONSE_STATUS } from "@utils/response";
+import { statusService } from "@/loaders/service.loader";
+import { ERROR_MESSAGE } from "@/utils/error";
+import HTTP_STATUS_CODE from "@/utils/http-status-code";
+import { RESPONSE_MESSAGE, RESPONSE_STATUS } from "@/utils/response";
 import request from "supertest";
 
 const path = "/api/status";

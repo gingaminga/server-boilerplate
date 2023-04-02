@@ -1,8 +1,8 @@
-import { checkStatusController } from "@controllers/status.controller";
-import { ResponseDTO } from "@customTypes/express.custom";
-import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
-import { statusService } from "@loaders/service.loader";
-import { RESPONSE_MESSAGE } from "@utils/response";
+import { checkStatusController } from "@/controllers/status.controller";
+import { CheckStatusRequestParamDTO } from "@/dto/check-status.request.param.dto";
+import { statusService } from "@/loaders/service.loader";
+import { ResponseDTO } from "@/types/express.custom";
+import { RESPONSE_MESSAGE } from "@/utils/response";
 import { Request } from "express";
 
 const req = {

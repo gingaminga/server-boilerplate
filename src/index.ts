@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import "@utils/env";
+import "@/utils/env";
 import app from "@/app";
+import { essentialInitLoader } from "@/loaders/essential.loader";
 import { getServer } from "@/server";
-import { essentialInitLoader } from "@loaders/essential.loader";
-import constants from "@utils/constants";
-import logger from "@utils/logger";
+import constants from "@/utils/constants";
+import logger from "@/utils/logger";
 
 const { PORT } = constants;
 

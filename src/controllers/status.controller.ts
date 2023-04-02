@@ -1,7 +1,7 @@
-import { RequestDTOHandler } from "@customTypes/express.custom";
-import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
-import { statusService } from "@loaders/service.loader";
-import { RESPONSE_MESSAGE } from "@utils/response";
+import { CheckStatusRequestParamDTO } from "@/dto/check-status.request.param.dto";
+import { statusService } from "@/loaders/service.loader";
+import { RequestDTOHandler } from "@/types/express.custom";
+import { RESPONSE_MESSAGE } from "@/utils/response";
 
 /**
  * @description 서버 상태를 체크하는 컨트롤러
