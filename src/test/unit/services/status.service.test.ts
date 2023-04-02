@@ -1,4 +1,4 @@
-import StatusService from "@services/status.service";
+import StatusService from "@/services/status.service";
 
 describe("Status service test :)", () => {
   let statusService: StatusService;

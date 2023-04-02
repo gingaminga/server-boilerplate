@@ -1,5 +1,5 @@
-import { RequestDTOHandler } from "@customTypes/express.custom";
-import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
+import { CheckStatusRequestParamDTO } from "@/dto/check-status.request.param.dto";
+import { RequestDTOHandler } from "@/types/express.custom";
 import joi from "joi";
 
 interface ICheckStatusSchema {

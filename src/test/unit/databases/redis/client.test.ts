@@ -1,4 +1,4 @@
-import RedisClient from "@databases/redis/client";
+import RedisClient from "@/databases/redis/client";
 
 const testKey = "test-key";
 const testField = "testField";

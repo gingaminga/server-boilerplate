@@ -1,5 +1,5 @@
-import { redisClient } from "@loaders/database.loader";
-import constants from "@utils/constants";
+import { redisClient } from "@/loaders/database.loader";
+import constants from "@/utils/constants";
 
 /**
  * @description 레디스 실행

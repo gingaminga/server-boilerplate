@@ -1,6 +1,6 @@
-import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
-import HTTP_STATUS_CODE from "@utils/http-status-code";
-import { ERROR_MESSAGE } from "@utils/error";
+import errorHandlerMiddleware from "@/middlewares/error-handler.middleware";
+import HTTP_STATUS_CODE from "@/utils/http-status-code";
+import { ERROR_MESSAGE } from "@/utils/error";
 import { isError } from "joi";
 import { Request, Response } from "express";
 
