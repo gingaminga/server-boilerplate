@@ -1,5 +1,5 @@
-import redisKey from "@databases/redis/key";
-import { redisClient } from "@loaders/database.loader";
+import redisKey from "@/databases/redis/key";
+import { redisClient } from "@/loaders/database.loader";
 import { Service } from "typedi";
 
 @Service()

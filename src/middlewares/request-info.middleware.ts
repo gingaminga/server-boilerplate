@@ -1,4 +1,4 @@
-import logger from "@utils/logger";
+import logger from "@/utils/logger";
 import colors from "ansi-colors";
 import { NextFunction, Request, Response } from "express";
 import _ from "lodash";

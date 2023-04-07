@@ -1,8 +1,8 @@
-import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
-import notFoundMiddleware from "@middlewares/not-found.middleware";
-import requestInfoMiddleware from "@middlewares/request-info.middleware";
-import responseFormatMiddleware from "@middlewares/response-format.middleware";
-import routers from "@routes/status.route";
+import errorHandlerMiddleware from "@/middlewares/error-handler.middleware";
+import notFoundMiddleware from "@/middlewares/not-found.middleware";
+import requestInfoMiddleware from "@/middlewares/request-info.middleware";
+import responseFormatMiddleware from "@/middlewares/response-format.middleware";
+import routers from "@/routes/status.route";
 import express from "express";
 
 const app = express();
