@@ -1,6 +1,6 @@
-import { TStatusEventData } from "@customTypes/socket";
-import { statusService } from "@loaders/service.loader";
-import { getResponseFormat } from "@utils/index";
+import { statusService } from "@/loaders/service.loader";
+import { TStatusEventData } from "@/types/socket";
+import { getResponseFormat } from "@/utils/index";
 import { Socket } from "socket.io";
 
 export default (socket: Socket, data: TStatusEventData) => {

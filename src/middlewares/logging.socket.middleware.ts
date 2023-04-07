@@ -1,5 +1,5 @@
-import logger from "@utils/logger";
-import { makeDetailTextSocketEvent, makeTextSocket } from "@utils/index";
+import { makeDetailTextSocketEvent, makeTextSocket } from "@/utils/index";
+import logger from "@/utils/logger";
 import { Socket } from "socket.io";
 
 /**

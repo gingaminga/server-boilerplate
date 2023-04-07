@@ -1,4 +1,4 @@
-import { ISocketDataFormat } from "@customTypes/socket";
+import { ISocketDataFormat } from "@/types/socket";
 import joi from "joi";
 
 export const checkCommonSocketDataSchema = joi.object<ISocketDataFormat<unknown>>().keys({

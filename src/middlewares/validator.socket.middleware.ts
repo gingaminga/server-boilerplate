@@ -1,5 +1,5 @@
-import { parseJSON } from "@utils/index";
-import { checkCommonSocketDataSchema, checkStatusEventDataSchema } from "@validators/format.socket.validator";
+import { parseJSON } from "@/utils/index";
+import { checkCommonSocketDataSchema, checkStatusEventDataSchema } from "@/validators/format.socket.validator";
 import { Event, Socket } from "socket.io";
 
 /**

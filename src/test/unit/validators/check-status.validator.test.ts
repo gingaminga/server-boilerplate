@@ -1,6 +1,6 @@
-import { CheckStatusRequestParamDTO } from "@dto/check-status.request.param.dto";
-import { ResponseDTO } from "@customTypes/express.custom";
-import { checkStatusSchema, checkStatusValidator } from "@validators/check-status.validator";
+import { CheckStatusRequestParamDTO } from "@/dto/check-status.request.param.dto";
+import { ResponseDTO } from "@/types/express.custom";
+import { checkStatusSchema, checkStatusValidator } from "@/validators/check-status.validator";
 import { Request } from "express";
 
 const req = {

@@ -1,4 +1,4 @@
-import { parseJSON } from "@utils/index";
+import { parseJSON } from "@/utils/index";
 
 interface IData {
   a: number;

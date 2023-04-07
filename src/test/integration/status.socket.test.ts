@@ -1,7 +1,7 @@
 import { loadSocketServer } from "@/socket";
-import { ISocketDataFormat } from "@customTypes/socket";
-import constants from "@utils/constants";
-import { RESPONSE_STATUS } from "@utils/response";
+import { ISocketDataFormat } from "@/types/socket";
+import constants from "@/utils/constants";
+import { RESPONSE_STATUS } from "@/utils/response";
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { io as clientIO, Socket as ClientSocket } from "socket.io-client";

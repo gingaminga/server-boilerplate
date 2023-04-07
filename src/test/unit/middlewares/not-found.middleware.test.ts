@@ -1,6 +1,6 @@
-import notFoundMiddleware from "@middlewares/not-found.middleware";
-import { ERROR_MESSAGE } from "@utils/error";
-import HTTP_STATUS_CODE from "@utils/http-status-code";
+import notFoundMiddleware from "@/middlewares/not-found.middleware";
+import { ERROR_MESSAGE } from "@/utils/error";
+import HTTP_STATUS_CODE from "@/utils/http-status-code";
 import { Request, Response } from "express";
 
 const req = {} as Request;
