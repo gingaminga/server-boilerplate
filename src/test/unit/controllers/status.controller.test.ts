@@ -1,6 +1,6 @@
-import statusController from "@controllers/status.controller";
-import { TStatusEventData } from "@customTypes/socket";
-import { statusService } from "@loaders/service.loader";
+import statusController from "@/controllers/status.controller";
+import { statusService } from "@/loaders/service.loader";
+import { TStatusEventData } from "@/types/socket";
 import { Socket } from "socket.io";
 
 const socket = {

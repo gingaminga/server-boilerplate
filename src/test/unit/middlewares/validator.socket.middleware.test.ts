@@ -1,4 +1,4 @@
-import validatorSocketMiddleware from "@middlewares/validator.socket.middleware";
+import validatorSocketMiddleware from "@/middlewares/validator.socket.middleware";
 import { Event, Socket } from "socket.io";
 
 const socket = {} as Socket;
