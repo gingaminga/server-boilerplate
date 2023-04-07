@@ -1,6 +1,6 @@
-import Status from "@databases/rdb/entities/status.entity";
-import StatusRepository from "@databases/rdb/repositories/status.repository";
-import StatusService from "@services/status.service";
+import Status from "@/databases/rdb/entities/status.entity";
+import StatusRepository from "@/databases/rdb/repositories/status.repository";
+import StatusService from "@/services/status.service";
 import { InsertResult } from "typeorm";
 
 describe("Status service test :)", () => {

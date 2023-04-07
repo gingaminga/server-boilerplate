@@ -1,4 +1,4 @@
-import StatusRepository from "@databases/rdb/repositories/status.repository";
+import StatusRepository from "@/databases/rdb/repositories/status.repository";
 import { Inject, Service } from "typedi";
 
 @Service()

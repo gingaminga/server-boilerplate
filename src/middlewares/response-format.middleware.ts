@@ -1,7 +1,7 @@
-import CError from "@utils/error";
-import HTTP_STATUS_CODE from "@utils/http-status-code";
-import { getResponseFormat } from "@utils/index";
-import logger from "@utils/logger";
+import CError from "@/utils/error";
+import HTTP_STATUS_CODE from "@/utils/http-status-code";
+import { getResponseFormat } from "@/utils/index";
+import logger from "@/utils/logger";
 import { NextFunction, Request, Response } from "express";
 
 /**

@@ -1,6 +1,6 @@
-import BaseRepository from "@databases/rdb/repositories/base.repository";
-import Status from "@databases/rdb/entities/status.entity";
-import { StatusDTO } from "@dto/status.dto";
+import Status from "@/databases/rdb/entities/status.entity";
+import BaseRepository from "@/databases/rdb/repositories/base.repository";
+import { StatusDTO } from "@/dto/status.dto";
 import { Service } from "typedi";
 
 @Service()

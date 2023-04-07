@@ -1,5 +1,5 @@
-import relationDatabaseConfig from "@databases/rdb/config";
-import { relationDatabaseClient } from "@loaders/database.loader";
+import relationDatabaseConfig from "@/databases/rdb/config";
+import { relationDatabaseClient } from "@/loaders/database.loader";
 
 /**
  * @description RDB 실행

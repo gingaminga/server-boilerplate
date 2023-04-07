@@ -1,5 +1,5 @@
-import RelationDatabaseClient from "@databases/rdb/client";
-import relationDatabaseConfig from "@databases/rdb/config";
+import RelationDatabaseClient from "@/databases/rdb/client";
+import relationDatabaseConfig from "@/databases/rdb/config";
 
 describe("RDB test :)", () => {
   let relationDatabaseClient: RelationDatabaseClient;
