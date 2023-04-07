@@ -1,6 +1,6 @@
-import { startRedis, startRelationDatabase } from "@databases/index";
-import { statusService } from "@loaders/service.loader";
-import logger from "@utils/logger";
+import { startRedis, startRelationDatabase } from "@/databases/index";
+import { statusService } from "@/loaders/service.loader";
+import logger from "@/utils/logger";
 
 /**
  * @description 필수 초기 로더

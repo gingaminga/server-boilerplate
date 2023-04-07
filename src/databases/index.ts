@@ -1,6 +1,6 @@
-import relationDatabaseConfig from "@databases/rdb/config";
-import { redisClient, relationDatabaseClient } from "@loaders/database.loader";
-import constants from "@utils/constants";
+import relationDatabaseConfig from "@/databases/rdb/config";
+import { redisClient, relationDatabaseClient } from "@/loaders/database.loader";
+import constants from "@/utils/constants";
 
 /**
  * @description 레디스 실행

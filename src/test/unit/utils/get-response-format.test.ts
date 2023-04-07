@@ -1,5 +1,5 @@
+import { getResponseFormat } from "@/utils/index";
 import { RESPONSE_STATUS } from "@/utils/response";
-import { getResponseFormat } from "@utils/index";
 
 describe("Util function getResponseFormat test :)", () => {
   afterEach(() => {

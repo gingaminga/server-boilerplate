@@ -1,8 +1,8 @@
-import errorHandlerMiddleware from "@middlewares/error-handler.middleware";
-import HTTP_STATUS_CODE from "@utils/http-status-code";
-import { ERROR_MESSAGE } from "@utils/error";
-import { isError } from "joi";
+import errorHandlerMiddleware from "@/middlewares/error-handler.middleware";
+import { ERROR_MESSAGE } from "@/utils/error";
+import HTTP_STATUS_CODE from "@/utils/http-status-code";
 import { Request, Response } from "express";
+import { isError } from "joi";
 
 jest.mock("joi");
 const mockedIsJoiError = jest.mocked(isError);
