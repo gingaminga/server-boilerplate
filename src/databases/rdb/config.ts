@@ -1,5 +1,5 @@
-import Status from "@databases/rdb/entities/status.entity";
-import constants from "@utils/constants";
+import Status from "@/databases/rdb/entities/status.entity";
+import constants from "@/utils/constants";
 import { DataSourceOptions } from "typeorm";
 
 const entities = [Status];
