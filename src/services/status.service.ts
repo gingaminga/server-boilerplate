@@ -1,6 +1,6 @@
-import StatusRepository from "@databases/rdb/repositories/status.repository";
-import redisKey from "@databases/redis/key";
-import { redisClient } from "@loaders/database.loader";
+import StatusRepository from "@/databases/rdb/repositories/status.repository";
+import redisKey from "@/databases/redis/key";
+import { redisClient } from "@/loaders/database.loader";
 import { Inject, Service } from "typedi";
 
 @Service()

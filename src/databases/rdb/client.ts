@@ -1,5 +1,5 @@
-import constants from "@utils/constants";
-import logger from "@utils/logger";
+import constants from "@/utils/constants";
+import logger from "@/utils/logger";
 import colors from "ansi-colors";
 import { DataSource, DataSourceOptions } from "typeorm";
 import { createDatabase } from "typeorm-extension";

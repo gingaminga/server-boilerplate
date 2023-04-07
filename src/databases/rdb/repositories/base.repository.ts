@@ -1,5 +1,5 @@
-import { relationDatabaseClient } from "@loaders/database.loader";
-import CError from "@utils/error";
+import { relationDatabaseClient } from "@/loaders/database.loader";
+import CError from "@/utils/error";
 import { EntityTarget, ObjectLiteral } from "typeorm";
 
 /**

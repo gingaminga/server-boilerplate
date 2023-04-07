@@ -1,5 +1,5 @@
-import CError from "@utils/error";
-import logger from "@utils/logger";
+import CError from "@/utils/error";
+import logger from "@/utils/logger";
 import colors from "ansi-colors";
 import { createClient } from "redis";
 
