@@ -79,7 +79,7 @@ describe("Status socket test :)", () => {
 
       test("Should correct result", (done) => {
         clientSocket.emit("status", params);
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
 
         clientSocket.on("status", (message) => {
           expect(message).toEqual({
@@ -93,7 +93,7 @@ describe("Status socket test :)", () => {
 
       test("Should incorrect result", (done) => {
         clientSocket.emit("status", params);
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
 
         clientSocket.on("status", (message) => {
           expect(message).toEqual({
@@ -115,7 +115,7 @@ describe("Status socket test :)", () => {
 
       test("Should correct result", (done) => {
         clientSocket.emit("status", params);
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(true);
+        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(true);
 
         clientSocket.on("status", (message) => {
           expect(message).toEqual({
@@ -129,7 +129,7 @@ describe("Status socket test :)", () => {
 
       test("Should incorrect result", (done) => {
         clientSocket.emit("status", params);
-        jest.spyOn(statusService, "getServerStatus").mockReturnValue(false);
+        jest.spyOn(statusService, "getServerStatus").mockResolvedValue(false);
 
         clientSocket.on("status", (message) => {
           expect(message).toEqual({
