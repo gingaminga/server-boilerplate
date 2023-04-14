@@ -5,6 +5,6 @@ import asyncify from "express-asyncify";
 
 const router = asyncify(Router());
 
-router.get("/status", checkStatusValidator, checkStatusController);
+router.get("/", checkStatusValidator, checkStatusController);
 
 export default router;

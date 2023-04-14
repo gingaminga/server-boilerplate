@@ -2,7 +2,7 @@ import errorHandlerMiddleware from "@/middlewares/error-handler.middleware";
 import notFoundMiddleware from "@/middlewares/not-found.middleware";
 import requestInfoMiddleware from "@/middlewares/request-info.middleware";
 import responseFormatMiddleware from "@/middlewares/response-format.middleware";
-import routers from "@/routes/status.route";
+import routers from "@/routes";
 import express from "express";
 
 const app = express();
