@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/gingaminga/server-boilerplate#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
     "@types/jest": "^29.2.6",
     "@types/lodash": "^4.14.191",
