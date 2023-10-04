@@ -52,7 +52,7 @@ const logFormat = printf((info) => {
     }
   }
 
-  return `#[${colors.bgRedBright(info.label)}] ${colors.whiteBright(info.timestamp)} [${level}]: ${message}`;
+  return `#[${colors.bgCyanBright(info.label)}] ${colors.whiteBright(info.timestamp)} [${level}]: ${message}`;
 });
 
 export default winston.createLogger({
